@@ -1,0 +1,43 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - EasyMapping (0.16.2):
+    - EasyMapping/Core (= 0.16.2)
+  - EasyMapping/Core (0.16.2)
+  - PDKeychainBindingsController (0.0.1)
+  - Reachability (3.2)
+  - Realm (0.102.0):
+    - Realm/Headers (= 0.102.0)
+  - Realm/Headers (0.102.0)
+  - stroeer-proxity (1.6.2):
+    - AFNetworking (~> 3.1)
+    - EasyMapping (~> 0.15)
+    - PDKeychainBindingsController (~> 0.0.1)
+    - Reachability (~> 3.2)
+    - Realm (~> 0.99)
+
+DEPENDENCIES:
+  - stroeer-proxity (~> 1.6.2)
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  EasyMapping: 7d519910862b8aa7484527eb129d95d3cd2dcf02
+  PDKeychainBindingsController: fa8cb3cf99f2ea9240d61066ed0549f34e2cec3c
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  Realm: 5d219f9037e3ec2019c599b8227bfc95433cb10e
+  stroeer-proxity: 08f5420398d028221495e9758ff599bdfdd7af56
+
+COCOAPODS: 0.39.0

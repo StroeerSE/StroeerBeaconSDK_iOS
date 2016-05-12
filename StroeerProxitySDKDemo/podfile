@@ -1,0 +1,6 @@
+source 'git@github.com:StroeerSE/StroeerBeaconSDK_iOS_Pods.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, "7.1"  
+
+pod 'stroeer-proxity' , '~> 1.6.2'

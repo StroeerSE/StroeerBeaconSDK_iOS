@@ -1,0 +1,408 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		44F7BE24D862E2D46581C702 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3E5D166A780C3ECED33D19A /* libPods.a */; };
+		A7FCC45D1A66A52D00A53DFF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FCC45C1A66A52D00A53DFF /* main.m */; };
+		A7FCC4601A66A52D00A53DFF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FCC45F1A66A52D00A53DFF /* AppDelegate.m */; };
+		A7FCC4631A66A52D00A53DFF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FCC4621A66A52D00A53DFF /* ViewController.m */; };
+		A7FCC4661A66A52D00A53DFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7FCC4641A66A52D00A53DFF /* Main.storyboard */; };
+		A7FCC4681A66A52D00A53DFF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7FCC4671A66A52D00A53DFF /* Images.xcassets */; };
+		A7FCC46B1A66A52D00A53DFF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7FCC4691A66A52D00A53DFF /* LaunchScreen.xib */; };
+		A7FCC4851A66B06D00A53DFF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FCC4841A66B06D00A53DFF /* Foundation.framework */; };
+		A7FCC4871A66B07100A53DFF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FCC4861A66B07100A53DFF /* UIKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5F2F3C8FF389E2CBCAD1B0BB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A7FCC4571A66A52D00A53DFF /* StroeerProxitySDK-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "StroeerProxitySDK-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7FCC45B1A66A52D00A53DFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7FCC45C1A66A52D00A53DFF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A7FCC45E1A66A52D00A53DFF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A7FCC45F1A66A52D00A53DFF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A7FCC4611A66A52D00A53DFF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A7FCC4621A66A52D00A53DFF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A7FCC4651A66A52D00A53DFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A7FCC4671A66A52D00A53DFF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A7FCC46A1A66A52D00A53DFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		A7FCC4841A66B06D00A53DFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A7FCC4861A66B07100A53DFF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B16C11E0F710C9BA41E51CAC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		F3E5D166A780C3ECED33D19A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A7FCC4541A66A52D00A53DFF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7FCC4871A66B07100A53DFF /* UIKit.framework in Frameworks */,
+				A7FCC4851A66B06D00A53DFF /* Foundation.framework in Frameworks */,
+				44F7BE24D862E2D46581C702 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6F1B6777974AA2F455B6EE9A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B16C11E0F710C9BA41E51CAC /* Pods.debug.xcconfig */,
+				5F2F3C8FF389E2CBCAD1B0BB /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A7FCC44E1A66A52D00A53DFF = {
+			isa = PBXGroup;
+			children = (
+				A7FCC4861A66B07100A53DFF /* UIKit.framework */,
+				A7FCC4841A66B06D00A53DFF /* Foundation.framework */,
+				A7FCC4591A66A52D00A53DFF /* StroeerProxitySDK-Demo */,
+				A7FCC4581A66A52D00A53DFF /* Products */,
+				6F1B6777974AA2F455B6EE9A /* Pods */,
+				CD3DE28AD8DC44E7AE2D643F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A7FCC4581A66A52D00A53DFF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A7FCC4571A66A52D00A53DFF /* StroeerProxitySDK-Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A7FCC4591A66A52D00A53DFF /* StroeerProxitySDK-Demo */ = {
+			isa = PBXGroup;
+			children = (
+				A7FCC45E1A66A52D00A53DFF /* AppDelegate.h */,
+				A7FCC45F1A66A52D00A53DFF /* AppDelegate.m */,
+				A7FCC4611A66A52D00A53DFF /* ViewController.h */,
+				A7FCC4621A66A52D00A53DFF /* ViewController.m */,
+				A7FCC4641A66A52D00A53DFF /* Main.storyboard */,
+				A7FCC4671A66A52D00A53DFF /* Images.xcassets */,
+				A7FCC4691A66A52D00A53DFF /* LaunchScreen.xib */,
+				A7FCC45A1A66A52D00A53DFF /* Supporting Files */,
+			);
+			path = "StroeerProxitySDK-Demo";
+			sourceTree = "<group>";
+		};
+		A7FCC45A1A66A52D00A53DFF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A7FCC45B1A66A52D00A53DFF /* Info.plist */,
+				A7FCC45C1A66A52D00A53DFF /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CD3DE28AD8DC44E7AE2D643F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3E5D166A780C3ECED33D19A /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A7FCC4561A66A52D00A53DFF /* StroeerProxitySDK-Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7FCC47A1A66A52E00A53DFF /* Build configuration list for PBXNativeTarget "StroeerProxitySDK-Demo" */;
+			buildPhases = (
+				02C13F6DA84FE36D0D212F1F /* Check Pods Manifest.lock */,
+				A7FCC4531A66A52D00A53DFF /* Sources */,
+				A7FCC4541A66A52D00A53DFF /* Frameworks */,
+				A7FCC4551A66A52D00A53DFF /* Resources */,
+				D4F82576E62D70C0102560B0 /* Embed Pods Frameworks */,
+				83EF87C72C36B696F41215E8 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "StroeerProxitySDK-Demo";
+			productName = "blulocSDK-Demo";
+			productReference = A7FCC4571A66A52D00A53DFF /* StroeerProxitySDK-Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A7FCC44F1A66A52D00A53DFF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "bluloc GmbH";
+				TargetAttributes = {
+					A7FCC4561A66A52D00A53DFF = {
+						CreatedOnToolsVersion = 6.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = A7FCC4521A66A52D00A53DFF /* Build configuration list for PBXProject "StroeerProxitySDK-Demo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A7FCC44E1A66A52D00A53DFF;
+			productRefGroup = A7FCC4581A66A52D00A53DFF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A7FCC4561A66A52D00A53DFF /* StroeerProxitySDK-Demo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A7FCC4551A66A52D00A53DFF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7FCC4661A66A52D00A53DFF /* Main.storyboard in Resources */,
+				A7FCC46B1A66A52D00A53DFF /* LaunchScreen.xib in Resources */,
+				A7FCC4681A66A52D00A53DFF /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		02C13F6DA84FE36D0D212F1F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		83EF87C72C36B696F41215E8 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4F82576E62D70C0102560B0 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A7FCC4531A66A52D00A53DFF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7FCC4631A66A52D00A53DFF /* ViewController.m in Sources */,
+				A7FCC4601A66A52D00A53DFF /* AppDelegate.m in Sources */,
+				A7FCC45D1A66A52D00A53DFF /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A7FCC4641A66A52D00A53DFF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A7FCC4651A66A52D00A53DFF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A7FCC4691A66A52D00A53DFF /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A7FCC46A1A66A52D00A53DFF /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A7FCC4781A66A52E00A53DFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A7FCC4791A66A52E00A53DFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A7FCC47B1A66A52E00A53DFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B16C11E0F710C9BA41E51CAC /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/StroeerProxitySDK-Demo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bluloc.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "StroeerProxitySDK-Demo";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A7FCC47C1A66A52E00A53DFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F2F3C8FF389E2CBCAD1B0BB /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/StroeerProxitySDK-Demo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bluloc.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "StroeerProxitySDK-Demo";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A7FCC4521A66A52D00A53DFF /* Build configuration list for PBXProject "StroeerProxitySDK-Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7FCC4781A66A52E00A53DFF /* Debug */,
+				A7FCC4791A66A52E00A53DFF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7FCC47A1A66A52E00A53DFF /* Build configuration list for PBXNativeTarget "StroeerProxitySDK-Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7FCC47B1A66A52E00A53DFF /* Debug */,
+				A7FCC47C1A66A52E00A53DFF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A7FCC44F1A66A52D00A53DFF /* Project object */;
+}
