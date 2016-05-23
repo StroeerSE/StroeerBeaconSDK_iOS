@@ -121,16 +121,16 @@
                               switch (error)
                               {
                                   case SPXErrorUnknown:
-                                      NSLog(@"An unknown error occured: %@", errorMessage);
+                                      NSLog(@"An unknown error occurred: %@", errorMessage);
                                       break;
                                   case SPXErrorInvalidAppKeyOrSphere:
                                       NSLog(@"The provided app key or sphere is invalid: %@", errorMessage);
                                       break;
                                   case SPXErrorNetworkConnection:
-                                      NSLog(@"A problem with the network connection occured: %@", errorMessage);
+                                      NSLog(@"A problem with the network connection occurred: %@", errorMessage);
                                       break;
                                   case SPXErrorBeaconRangingNotSupported:
-                                      NSLog(@"The current device doesn't support ragnig for blulocs: %@", errorMessage);
+                                      NSLog(@"The current device doesn't support ranging for blulocs: %@", errorMessage);
                                       break;
                                   case SPXErrorInactiveAppKey:
                                       NSLog(@"The specified app key is not activated.");
