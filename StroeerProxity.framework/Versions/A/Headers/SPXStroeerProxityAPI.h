@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @class SPXBeacon;
-@class SPXCustomAnalyticsType;
-@class SPXDeviceAction;
 @class SPXLocation;
 
 @protocol SPXStroeerProxityAPIDelegate;
@@ -75,12 +73,12 @@ typedef NS_ENUM(NSInteger, SPXState)
 typedef NS_ENUM(NSInteger, SPXDownloadStrategy)
 {
     /**
-     *  Download all content (beacons, actions, ...).
+     *  Download all content.
      */
     SPXDownloadStrategyAll = 0,
     
     /**
-     * Download only content (beacons, actions, ...) which is in your vicinity.
+     * Download only content which is in your vicinity.
      */
     SPXDownloadStrategyAroundMe
 };
@@ -95,7 +93,7 @@ typedef NS_ENUM(NSInteger, SPXDownloadStrategy)
 @interface SPXStroeerProxityAPI : NSObject
 
 /**
- * Delegate that informs about triggered actions.
+ * Delegate that informs about important changes in the SDK.
  */
 @property (nonatomic) id<SPXStroeerProxityAPIDelegate> delegate;
 
@@ -104,11 +102,10 @@ typedef NS_ENUM(NSInteger, SPXDownloadStrategy)
     You can choose between two strategies: <i>SPXDownloadStrategyAll</i> and <i>SPXDownloadStrategyAroundMe</i>.
  
     @discussion The <b>SPXDownloadStrategyAll</b> strategy is the default approach which will download all relevant data from the server.
-    This strategy is recommended if you have only a small amount of beacons and actions.
+    This strategy is recommended if you have only a small amount of beacons.
  
-    The <b>SPXDownloadStrategyAroundMe</b> strategy should be used if you have a lot of beacons and actions.
-    With this approach every beacon and all associated actions will be
-    downloaded in a certain radius (1 km) around the current user location.
+    The <b>SPXDownloadStrategyAroundMe</b> strategy should be used if you have a lot of beacons.
+    With this approach every beacon will be downloaded in a certain radius (1 km) around the current user location.
     Region Monitoring is used to determine the location of the user.
  
     @remark For proper function of the <b>SPXDownloadStrategyAroundMe</b> strategy you have to
@@ -384,61 +381,8 @@ typedef NS_ENUM(NSInteger, SPXDownloadStrategy)
  */
 @property (nonatomic, getter=isAnalyticsEnabeld) BOOL analyticsEnabled;
 
-/**
- * With this method the action will be confirmed on the server.
- * Call this after e.g. the user pressed on the push notification.
- *
- * @note This method will be removed soon. Please use this method instead:
- * @code
- - (void)sendConfirmAnalyticsEventWithAction:(SPXDeviceAction*)action;
- * @endcode
- *
- * @param action    The action that has to be confirmed.
- */
-- (void)analyticsConfirmAction:(SPXDeviceAction*)action __attribute__((deprecated(("Use the sendConfirmAnalyticsEventWithAction: method instead."))));
 
-/**
- * With this method the action will be confirmed on the server.
- * Call this method after e.g. the user pressed on the push notification.
- *
- * @param action    The action which shall be confirmed.
- *
- * @return If the action has a capping and the maximum number is reached, @p NO will be returned, otherwise @p YES.
- */
-- (BOOL)sendConfirmAnalyticsEventWithAction:(SPXDeviceAction*)action;
-
-
-#pragma mark - Custom Analytics Events
-
-
-/**
- *  Returns all in the dashboard created custom analytics event types. 
- *  Use one of these objects to call the sendCustomAnalyticsEventWithAction:andType: method.
- *
- *  @return A list of SPXCustomAnalyticsType objects.
- */
-- (NSArray<SPXCustomAnalyticsType*> *)customAnalyticsEventTypes;
-
-/**
- * This method creates an analytics event on the server for a custom analytics type.
- * Call this method after e.g. the user pressed a like button.
- *
- * @param action    The action for which an event shall be created.
- * @param type      A custom event type which is defined in the dashboard.
- */
-- (void)sendCustomAnalyticsEventWithAction:(SPXDeviceAction*)action andType:(SPXCustomAnalyticsType*)type;
-
-
-#pragma mark - Free Analytics Events
-
-
-/**
- *  This method allows you to send whatever type of analytics event with a custom amount of payload.
- *  Such events won't be appear in the dashboard. The payload must not be empty.
- *
- *  @param payload Customizable payload.
- */
-- (void)sendFreeAnalyticsEventWithPayload:(NSDictionary*)payload;
+#pragma mark - Outdoor Positioning
 
 
 /**
@@ -447,7 +391,6 @@ typedef NS_ENUM(NSInteger, SPXDownloadStrategy)
  *  @note The default value is @p NO.
  */
 @property (nonatomic, getter=isSlidingWindowEnabled) BOOL slidingWindowEnabled;
-#pragma mark - Outdoor Positioning
 
 /**
  *  If you also want to retrieve outdoor position updates (GPS) set this property to @p YES.
@@ -480,18 +423,11 @@ typedef NS_ENUM(NSInteger, SPXDownloadStrategy)
 
 
 /**
- * Protocol that informs about scanned beacons.
+ * Protocol that informs about important changes in the SDK.
  */
 @protocol SPXStroeerProxityAPIDelegate <NSObject>
 
 @optional
-
-/**
- * A nearby beacon was scanned and triggered the given action.
- *
- * @param action    The action that is linked with the scanned beacon.
- */
-- (void)actionReceived:(SPXDeviceAction*)action;
 
 /**
  * This method informs about state changes of the bluetooth hardware. 
@@ -515,9 +451,9 @@ typedef NS_ENUM(NSInteger, SPXDownloadStrategy)
 - (void)locationUpdated:(nullable SPXLocation *)location;
 
 /**
- *  Informs the delegate that beacons were ranged during the last scan interval.
+ *  Informs the delegate which beacons were ranged during the last scan interval.
  */
-- (void)didRangeBeacons;
+- (void)didScanBeacons:(nullable NSMutableArray<SPXBeacon*>*)scannedBeacons;
 
 /**
  *  Will be called after the latest data where downloaded from the server.

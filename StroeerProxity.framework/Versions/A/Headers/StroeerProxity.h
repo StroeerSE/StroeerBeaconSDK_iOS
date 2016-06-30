@@ -10,7 +10,5 @@
 #import <StroeerProxity/SPXBeacon.h>
 #import <StroeerProxity/SPXLocation.h>
 #import <StroeerProxity/SPXStroeerProxityAPI.h>
-#import <StroeerProxity/SPXCustomAnalyticsType.h>
-#import <StroeerProxity/SPXDeviceAction.h>
 
 #endif
