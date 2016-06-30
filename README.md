@@ -142,7 +142,7 @@ It's possible to define a period of time which is used to collect raw beacon dat
 @property (nonatomic) CGFloat scanPeriod;
 ```
 
-The default value is five seconds. In this time the SDK will collect all scanned beacon informations in your vicinity. After this time span you get informed if there were any results, e.g. a received action.
+The default value is five seconds. In this time the SDK will collect all scanned beacon informations in your vicinity. After this time span you get informed if there were any results.
 
 ___
 
