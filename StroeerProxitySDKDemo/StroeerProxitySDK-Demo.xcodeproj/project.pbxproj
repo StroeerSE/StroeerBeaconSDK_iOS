@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		44F7BE24D862E2D46581C702 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3E5D166A780C3ECED33D19A /* libPods.a */; };
+		684629EDFFDDFEFB0CC02156 /* libPods-StroeerProxitySDK-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F65C4E1D05F5E61EFB248593 /* libPods-StroeerProxitySDK-Demo.a */; };
 		A7FCC45D1A66A52D00A53DFF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FCC45C1A66A52D00A53DFF /* main.m */; };
 		A7FCC4601A66A52D00A53DFF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FCC45F1A66A52D00A53DFF /* AppDelegate.m */; };
 		A7FCC4631A66A52D00A53DFF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FCC4621A66A52D00A53DFF /* ViewController.m */; };
@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5F2F3C8FF389E2CBCAD1B0BB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		13D35CE43F22F1D28B4F0E79 /* Pods-StroeerProxitySDK-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StroeerProxitySDK-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StroeerProxitySDK-Demo/Pods-StroeerProxitySDK-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		A7FCC4571A66A52D00A53DFF /* StroeerProxitySDK-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "StroeerProxitySDK-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FCC45B1A66A52D00A53DFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7FCC45C1A66A52D00A53DFF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -32,8 +32,8 @@
 		A7FCC46A1A66A52D00A53DFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A7FCC4841A66B06D00A53DFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A7FCC4861A66B07100A53DFF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		B16C11E0F710C9BA41E51CAC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		F3E5D166A780C3ECED33D19A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8BCF1EAAE9840DE2F3D7BA5 /* Pods-StroeerProxitySDK-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StroeerProxitySDK-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-StroeerProxitySDK-Demo/Pods-StroeerProxitySDK-Demo.release.xcconfig"; sourceTree = "<group>"; };
+		F65C4E1D05F5E61EFB248593 /* libPods-StroeerProxitySDK-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StroeerProxitySDK-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,18 +43,26 @@
 			files = (
 				A7FCC4871A66B07100A53DFF /* UIKit.framework in Frameworks */,
 				A7FCC4851A66B06D00A53DFF /* Foundation.framework in Frameworks */,
-				44F7BE24D862E2D46581C702 /* libPods.a in Frameworks */,
+				684629EDFFDDFEFB0CC02156 /* libPods-StroeerProxitySDK-Demo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6F1B6777974AA2F455B6EE9A /* Pods */ = {
+		374034AA9B45FC9B42F85EDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B16C11E0F710C9BA41E51CAC /* Pods.debug.xcconfig */,
-				5F2F3C8FF389E2CBCAD1B0BB /* Pods.release.xcconfig */,
+				F65C4E1D05F5E61EFB248593 /* libPods-StroeerProxitySDK-Demo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		57F94321756043C103FCEFE9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				13D35CE43F22F1D28B4F0E79 /* Pods-StroeerProxitySDK-Demo.debug.xcconfig */,
+				E8BCF1EAAE9840DE2F3D7BA5 /* Pods-StroeerProxitySDK-Demo.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -66,8 +74,8 @@
 				A7FCC4841A66B06D00A53DFF /* Foundation.framework */,
 				A7FCC4591A66A52D00A53DFF /* StroeerProxitySDK-Demo */,
 				A7FCC4581A66A52D00A53DFF /* Products */,
-				6F1B6777974AA2F455B6EE9A /* Pods */,
-				CD3DE28AD8DC44E7AE2D643F /* Frameworks */,
+				57F94321756043C103FCEFE9 /* Pods */,
+				374034AA9B45FC9B42F85EDF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,14 +111,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CD3DE28AD8DC44E7AE2D643F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F3E5D166A780C3ECED33D19A /* libPods.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -118,12 +118,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A7FCC47A1A66A52E00A53DFF /* Build configuration list for PBXNativeTarget "StroeerProxitySDK-Demo" */;
 			buildPhases = (
-				02C13F6DA84FE36D0D212F1F /* Check Pods Manifest.lock */,
+				06F1332B5359AA91D7E8AB5E /* [CP] Check Pods Manifest.lock */,
 				A7FCC4531A66A52D00A53DFF /* Sources */,
 				A7FCC4541A66A52D00A53DFF /* Frameworks */,
 				A7FCC4551A66A52D00A53DFF /* Resources */,
-				D4F82576E62D70C0102560B0 /* Embed Pods Frameworks */,
-				83EF87C72C36B696F41215E8 /* Copy Pods Resources */,
+				9CCBC83807D1402E09A205D6 /* [CP] Embed Pods Frameworks */,
+				A013F78484D15C72DDE06C47 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -185,14 +185,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		02C13F6DA84FE36D0D212F1F /* Check Pods Manifest.lock */ = {
+		06F1332B5359AA91D7E8AB5E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,34 +200,34 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		83EF87C72C36B696F41215E8 /* Copy Pods Resources */ = {
+		9CCBC83807D1402E09A205D6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StroeerProxitySDK-Demo/Pods-StroeerProxitySDK-Demo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D4F82576E62D70C0102560B0 /* Embed Pods Frameworks */ = {
+		A013F78484D15C72DDE06C47 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StroeerProxitySDK-Demo/Pods-StroeerProxitySDK-Demo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -346,7 +346,7 @@
 		};
 		A7FCC47B1A66A52E00A53DFF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B16C11E0F710C9BA41E51CAC /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 13D35CE43F22F1D28B4F0E79 /* Pods-StroeerProxitySDK-Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -365,7 +365,7 @@
 		};
 		A7FCC47C1A66A52E00A53DFF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F2F3C8FF389E2CBCAD1B0BB /* Pods.release.xcconfig */;
+			baseConfigurationReference = E8BCF1EAAE9840DE2F3D7BA5 /* Pods-StroeerProxitySDK-Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

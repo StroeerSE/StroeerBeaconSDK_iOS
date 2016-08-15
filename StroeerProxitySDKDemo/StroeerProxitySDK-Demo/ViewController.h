@@ -10,9 +10,7 @@
 
 @interface ViewController : UIViewController<UIAlertViewDelegate, SPXStroeerProxityAPIDelegate>
 
-- (void)checkForToConfirmingActions;
-
-- (void)updateButtonState;
+- (void)updateUI;
 
 @end
 

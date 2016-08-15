@@ -42,10 +42,7 @@
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
     ViewController *viewController = (ViewController *)self.window.rootViewController;
-    
-    // Check if there are not confirmed actions pending and update the UI
-    [viewController checkForToConfirmingActions];
-    [viewController updateButtonState];
+    [viewController updateUI];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

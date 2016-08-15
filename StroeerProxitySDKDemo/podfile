@@ -3,4 +3,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, "7.1"  
 
-pod 'stroeer-proxity' , '~> 1.6.2'
+target 'StroeerProxitySDK-Demo' do
+pod 'stroeer-proxity' , '~> 1.8'
+end
