@@ -15,7 +15,7 @@
 /**
  * The name / identifier of the beacon.
  */
-@property (nonatomic, readonly, nonnull) NSString* name;
+@property (nonatomic, readonly, nonnull) NSString* dmc;
 
 /**
  * The UUID of the beacon.
@@ -31,25 +31,5 @@
  * The minor value of the beacon.
  */
 @property (nonatomic, readonly) NSInteger minor;
-
-
-
-/**
- *  The latitiude of the beacon.
- */
-@property (nonatomic, readonly) double latitude;
-
-/**
- *  The longitude of the beacon.
- */
-@property (nonatomic, readonly) double longitude;
-
-
-/**
- * Helper method which returns the current content of the instance as dictionary.
- *
- * @return Returns a dictionary whose keys matches the property names.
- */
-- (nonnull NSDictionary*)toDictionary;
 
 @end

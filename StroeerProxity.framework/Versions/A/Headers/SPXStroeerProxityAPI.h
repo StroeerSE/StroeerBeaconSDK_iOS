@@ -10,41 +10,11 @@
 
 @class SPXBeacon;
 @class SPXLocation;
+@class SPXError;
 
 @protocol SPXStroeerProxityAPIDelegate;
 
 NS_ASSUME_NONNULL_BEGIN
-
-/**
- * Possible errors that can occure in the SDK
- */
-typedef NS_ENUM(NSInteger, SPXError)
-{
-    /**
-     * An unknown error occured.
-     */
-    SPXErrorUnknown = 0,
-    
-    /**
-     * The specified app key or sphere isn't valid.
-     */
-    SPXErrorInvalidAppKeyOrSphere,
-    
-    /**
-     * The specified app key is deactivated.
-     */
-    SPXErrorInactiveAppKey,
-    
-    /**
-     * The app key and sphere couldn't be validated or the operation couldn't be finished due to network errors.
-     */
-    SPXErrorNetworkConnection,
-    
-    /**
-     * This error is thrown during the setup if the device doesn't support ranging for beacons.
-     */
-    SPXErrorBeaconRangingNotSupported,
-};
 
 /**
  * Possible states in which the controller can be. Depending on the state scanning for beacons is possible or not.
@@ -55,7 +25,12 @@ typedef NS_ENUM(NSInteger, SPXState)
      *  @p SPXStroeerProxityAPI hasn't been setup yet. In this state scanning isn't possible.
      */
     SPXStateNone = 0,
-    
+
+    /**
+     *  @p SPXStroeerProxityAPI validates the current region of the device.
+     */
+    SPXStateRegionCheck,
+
     /**
      *  Setup of the @p SPXStroeerProxityAPI was successful but the data isn't up to date. In this state scanning is possible.
      */
@@ -67,25 +42,7 @@ typedef NS_ENUM(NSInteger, SPXState)
     SPXStateOnline
 };
 
-/**
- * Enum to specify the download strategy.
- */
-typedef NS_ENUM(NSInteger, SPXDownloadStrategy)
-{
-    /**
-     *  Download all content.
-     */
-    SPXDownloadStrategyAll = 0,
-    
-    /**
-     * Download only content which is in your vicinity.
-     */
-    SPXDownloadStrategyAroundMe
-};
-
-
 #pragma mark - SPXStroeerProxityAPI
-
 
 /**
  * Main class of the SDK with handles the authentication and scanning for nearby beacons.
@@ -93,36 +50,14 @@ typedef NS_ENUM(NSInteger, SPXDownloadStrategy)
 @interface SPXStroeerProxityAPI : NSObject
 
 /**
+ *  A key to verify your app to use this SDK.
+ */
+@property (nonatomic) NSString *apiKey;
+
+/**
  * Delegate that informs about important changes in the SDK.
  */
 @property (nonatomic) id<SPXStroeerProxityAPIDelegate> delegate;
-
-/**
-    @brief Defines how the content should be downloaded.
-    You can choose between two strategies: <i>SPXDownloadStrategyAll</i> and <i>SPXDownloadStrategyAroundMe</i>.
- 
-    @discussion The <b>SPXDownloadStrategyAll</b> strategy is the default approach which will download all relevant data from the server.
-    This strategy is recommended if you have only a small amount of beacons.
- 
-    The <b>SPXDownloadStrategyAroundMe</b> strategy should be used if you have a lot of beacons.
-    With this approach every beacon will be downloaded in a certain radius (1 km) around the current user location.
-    Region Monitoring is used to determine the location of the user.
- 
-    @remark For proper function of the <b>SPXDownloadStrategyAroundMe</b> strategy you have to
- 
-    - set a position for every beacon.
- 
-    - enable the background capability "Location updates" for your app.
- 
-    - add the <i>NSLocationAlwaysUsageDescription</i> key to the <i>info.plist</i> file with a suitable value (iOS 8+).
- 
-    - add the <i>NSLocationUsageDescription</i> key to the <i>info.plist</i> file with a suitable value (iOS 7).
- 
-    <b>Default value</b>: <i>SPXDownloadStrategyAll</i>.
- 
-    @remark Has to be called before on of the @c - @c(void)setupWithAppKey:andSphere:... methods.
- */
-@property (nonatomic) SPXDownloadStrategy downloadStrategy;
 
 /**
  *  Returns the current state of the @p SPXStroeerProxityAPI. The state will be updated during the setup process or in the @p updateContentFromServer method. Default value is @p SPXStateNone
@@ -134,16 +69,6 @@ typedef NS_ENUM(NSInteger, SPXDownloadStrategy)
  *  This property will only be updated if the target isn't the iphone simulator (@p TARGET_IPHONE_SIMULATOR not defined).
  */
 @property (nonatomic, readonly) CBCentralManagerState bluetoothState;
-
-/**
- *  The user token is a 128-bit UUID generated during the first successful SDK setup.
- *  With this token it's possible to restore user specific sdk information (e.g. capping) after a fresh install of the app on the same device or another.
- *
- *  Once generated the user token will be re-used until the cache was cleared, you specified another user token or the app was deleted.
- *
- *  @note Simultaneous use of the same user token on different devices may lead to information loss.
- */
-@property (nonatomic, readonly) NSString *userToken;
 
 /**
  *  Returns the singleton instance of the @p SPXStroeerProxityAPI class. Use this method instead of @p init or @p new.
@@ -158,68 +83,6 @@ typedef NS_ENUM(NSInteger, SPXDownloadStrategy)
  *  @return Current version of the SDK.
  */
 + (NSString *)sdkVersion;
-
-
-#pragma mark - SDK Setup
-
-
-/**
- * Method to setup the @p SPXStroeerProxityAPI with multiple proximityUUIDs. It is necessary to call this method before starting the scanning process.
- * The method returns immediately because the given @p appKey and @p sphere will be checked asynchronously.
- *
- * On the first successful call this method will generate a new user token. After this the generated user token will be reused.
- *
- * @note The @p successBlock will be called if
- * - the setup was successful and data could read from the server. The @p state will be updated to @p SPXStateOnline.
- * - internet connection isn't available but the setup process and content update was successful previously. 
- *      The @p state will be updated to @p SPXStateOffline. After the internet connection is back the @p SPXStroeerProxityAPI will try updating the data automatically. 
- *      If this succeeds the @p state will be updated to @p SPXStateOnline.
- *
- * @note The @p errorBlock will be called if
- * - an unexpected error occurred during the setup or content loading (e.g. invalid app key or sphere). The @p state will be updated to @p SPXStateNone.
- * - there wasn't a successful setup yet and a internet connection isn't available. The @p state will be updated to @p SPXStateNone.
- *
- * @param appKey            A key to verify your app to use this framework.
- * @param sphere            A specific value defined for the current client.
- * @param proximityUUIDs    The UUIDs of your beacons.
- * @param successBlock      Will be called if the @p state was updated to @p SPXStateOffline or @p SPXStateOnline.
- * @param errorBlock        Will be called if the @p state was updated to @p SPXStateNone.
- */
-- (void)setupWithAppKey:(NSString*)appKey
-              andSphere:(NSString*)sphere
-         proximityUUIDs:(NSArray*)proximityUUIDs
-           successBlock:(nullable void (^)(NSString *userToken))successBlock
-             errorBlock:(nullable void (^)(SPXError error, NSString *errorMessage))errorBlock;
-
-/**
- * Method to setup the @p SPXStroeerProxityAPI with multiple proximityUUIDs. It is necessary to call this method before starting the scanning process.
- * The method returns immediately because the given @p appKey and @p sphere will be checked asynchronously.
- *
- * This method won't generate a new user token. The SDK will try to validate the specified user token. If this token is invalid the setup fails.
- *
- * @note The @p successBlock will be called if
- * - the setup was successful and data could read from the server. The @p state will be updated to @p SPXStateOnline.
- * - internet connection isn't available but the setup process and content update was successful previously. 
- *      The @p state will be updated to @p SPXStateOffline. After the internet connection is back the @p SPXStroeerProxityAPI will try updating the data automatically. 
- *      If this succeeds the @p state will be updated to @p SPXStateOnline.
- *
- * @note The @p errorBlock will be called if
- * - an unexpected error occurred during the setup or content loading (e.g. invalid app key or sphere). The @p state will be updated to @p SPXStateNone.
- * - there wasn't a successful setup yet and a internet connection isn't available. The @p state will be updated to @p SPXStateNone.
- *
- * @param appKey A key to verify your app to use this framework.
- * @param sphere A specific value defined for the current client.
- * @param proximityUUIDs The UUIDs of your beacons.
- * @param userToken With this user token it's possible to login an existing device user on another device or the same device after the app was re-installed.
- * @param successBlock Will be called if the @p state was updated to @p SPXStateOffline or @p SPXStateOnline.
- * @param errorBlock Will be called if the @p state was updated to @p SPXStateNone.
- */
-- (void)setupWithAppKey:(NSString*)appKey
-              andSphere:(NSString*)sphere
-         proximityUUIDs:(NSArray*)proximityUUIDs
-              userToken:(nullable NSString*)userToken
-           successBlock:(nullable void (^)(NSString *userToken))successBlock
-             errorBlock:(nullable void (^)(SPXError error, NSString *errorMessage))errorBlock;
 
 
 #pragma mark - Scanning
@@ -244,21 +107,8 @@ typedef NS_ENUM(NSInteger, SPXDownloadStrategy)
  * If the app is running in background, scanning is active and the device comes in the vicinity of one of your beacons a @p UILocalNotification will be shown on devices running iOS 7.
  * This @p UILocalNotification is used to encourage the user to open the app and background scanning can be activated.
  * For devices running iOS 8 or higher background scanning will just activated without such a @p UILocalNotification.
- *
- * @b Hint:
- *
- * To scan nearby beacons it's necessary that the @p state is @p SPXStateOffline or @p SPXStateOnline. The state can be updated with this method:
- *  @code
- - (void)setupWithAppKey:(NSString*)appKey
-               andSphere:(NSString*)sphere
-          proximityUUIDs:(NSArray*)proximityUUIDs
-            successBlock:(void (^)())successBlock
-              errorBlock:(void (^)(SPXError error, NSString *errorMessage))errorBlock;
- *  @endcode
- *
- * @return @p NO if the @p state is @p SPXStateNone.
  */
-- (BOOL)startScan;
+- (void)startScan;
 
 /**
  * Stops the current scanning process.
@@ -354,22 +204,14 @@ typedef NS_ENUM(NSInteger, SPXDownloadStrategy)
  *
  *  @b Hint:
  *
- *  To force updates it's necessary that the @p state is @p SPXStateOnline. The state can be updated with this method:
- *  @code
- - (void)setupWithAppKey:(NSString*)appKey
-               andSphere:(NSString*)sphere
-          proximityUUIDs:(NSArray*)proximityUUIDs
-            successBlock:(void (^)())successBlock
-              errorBlock:(void (^)(SPXError error, NSString *errorMessage))errorBlock;
- *  @endcode
+ *  To force updates it's necessary that the @p state is @p SPXStateOnline.
  *
  * @param successBlock  Will be called if the content update was successful.
  * @param errorBlock    Will be called if the content update wasn't successful.
  *
- * @return @p NO if the @p state isn't @p SPXStateOnline.
  */
-- (BOOL)updateContentFromServerWithSuccessBlock:(nullable void (^)())successBlock
-                                     errorBlock:(nullable void (^)(SPXError error, NSString *errorMessage))errorBlock;
+- (void)updateContentFromServerWithSuccessBlock:(nullable void (^)())successBlock
+                                     errorBlock:(nullable void (^)(SPXError *error))errorBlock;
 
 
 #pragma mark - Analytics
@@ -399,14 +241,7 @@ typedef NS_ENUM(NSInteger, SPXDownloadStrategy)
         - (void)locationUpdated:(nullable SPXLocation *)location;
  * @endcode
  *
- *  @note The @p state of SDK must be either @p SPXStateOffline or @p SPXStateOnline. The state can be updated with this method:
- *  @code
- - (void)setupWithAppKey:(NSString*)appKey 
-               andSphere:(NSString*)sphere 
-          proximityUUIDs:(NSArray*)proximityUUIDs
-            successBlock:(void (^)())successBlock 
-              errorBlock:(void (^)(SPXError error, NSString *errorMessage))errorBlock;
- *  @endcode
+ *  @note The @p state of SDK must be either @p SPXStateOffline or @p SPXStateOnline.
  */
 @property (nonatomic, getter=isOutdoorPositioningEnabled) BOOL outdoorPositioningEnabled;
 
@@ -415,6 +250,24 @@ typedef NS_ENUM(NSInteger, SPXDownloadStrategy)
  *  Default value: @p kCLLocationAccuracyBest
  */
 @property (nonatomic) CLLocationAccuracy outdoorPositioningAccuracy;
+
+
+#pragma mark - Logging
+
+/**
+ * Enable or disables the logging to a log file (NSDocumentDirectory/spx.log). Default = NO
+ */
+@property (nonatomic, getter=isFileLoggingEnabled) BOOL fileLoggingEnabled;
+
+/**
+ * Returns the full path and name to the logfile.
+ */
+@property (nonatomic, readonly) NSString *logFile;
+
+/**
+ * Deletes the create logfile.
+ */
+- (void)deleteLogFile;
 
 @end
 
@@ -430,17 +283,34 @@ typedef NS_ENUM(NSInteger, SPXDownloadStrategy)
 @optional
 
 /**
+ * Informs the delegate about an occured error. In case of a critical error (e.g. invalid Api-Key)
+ * the SDK will stop scanning automatically.
+ *
+ * @param spxAPi The current instance of the api.
+ * @param error The occured error.
+ */
+- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi didFailWithError:(SPXError*)error;
+
+/**
+ *  This method informs about state changes of the SDK.
+ *
+ *  @param oldState The old state of the SDK.
+ *  @param newState The new state of the SDK.
+ */
+- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi sdkStateChangedFromState:(SPXState)oldState toState:(SPXState)newState;
+
+/**
  * This method informs about state changes of the bluetooth hardware. 
  * To check if bluetooth is either enabled or not the @p bluetoothEnabled property can be used.
  * This method will only be called if the target isn't the iphone simulator (@p TARGET_IPHONE_SIMULATOR not defined).
  */
-- (void)bluetoothStateChangedFromState:(CBCentralManagerState)oldState toState:(CBCentralManagerState)newState;
+- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi bluetoothStateChangedFromState:(CBCentralManagerState)oldState toState:(CBCentralManagerState)newState;
 
 /**
  *  This method will be called after the authorization status has changed to @p kCLAuthorizationStatusDenied or @p kCLAuthorizationStatusRestricted.
  *  This happens when the user doesn't allow the usage of location services. The SDK will stop scanning.
  */
-- (void)usageOfLocationServicesIsDenied;
+- (void)stroeerProxityAPIUsageOfLocationServicesDenied:(SPXStroeerProxityAPI*)spxAPi;
 
 /**
  *  Whenever a a new outdoor location was calculated this method will be triggered.
@@ -448,17 +318,24 @@ typedef NS_ENUM(NSInteger, SPXDownloadStrategy)
  *
  *  @param location     The new location.
  */
-- (void)locationUpdated:(nullable SPXLocation *)location;
+- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi locationUpdated:(nullable SPXLocation *)location;
 
 /**
  *  Informs the delegate which beacons were ranged during the last scan interval.
  */
-- (void)didScanBeacons:(nullable NSMutableArray<SPXBeacon*>*)scannedBeacons;
+- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi didScanBeacons:(nullable NSMutableArray<SPXBeacon*>*)scannedBeacons;
+
+/**
+ *  Will be called if a bluloc zone analytics event was successfully sent to the backend.
+ */
+- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi didSendAnalyticsEventForBeacon:(nullable SPXBeacon*)beacon;
 
 /**
  *  Will be called after the latest data where downloaded from the server.
+ *
+ *  @param numberOfBeacons The number of beacons downloaded from the server.
  */
-- (void)contentUpdated;
+- (void)stroeerProxityAPIContentUpdated:(SPXStroeerProxityAPI*)spxAPi numberOfBeacons:(NSInteger)numberOfBeacons;
 
 @end
 
