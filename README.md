@@ -32,9 +32,12 @@ ___
 ### Setup your App for background Scanning
 With region monitoring and background location usage scanning for beacons is also possible while your app is running in background. If you call `startScan` a `CLBeaconRegion` with the UUID of your beacons will be monitored. After the user or rather the device enters this region different things could happen depending on the status of the app and the iOS version.
 
-**Please note** that it's necessary to enable the background capability "Location updates" for your app and for iOS 8 you also have to add the `NSLocationAlwaysUsageDescription` key to your `info.plist` file with a suitable value. Otherwise scanning in background won't be possible.
+**Please note** that it's necessary to enable the background capability "Location updates" for your app by assigning "location" to the `UIBackgroundModes` key to your `info.plist`.
+For iOS 8 you also have to add the `NSLocationAlwaysUsageDescription` key to your `info.plist` file with a suitable value. Otherwise scanning in background won't be possible.
 Also ensure that you comply to the latest App Store Review Guidelines:
-> 4.5 Apps using background location services must provide a reason that clarifies the purpose of the use, using mechanisms described in the Human Interface Guideline
+> 2.5.4 Multitasking apps may only use background services for their intended purposes: VoIP, audio playback, location, task completion, local notifications, etc. If your app uses location background mode, include a reminder that doing so may dramatically decrease battery life.
+
+> 5.1.5 Location Services: Use Location services in your app only when it is directly relevant to the features and services provided by the app. [...] If your app uses background location services, be sure to explain the purpose in your app; refer to the Human Interface Guidelines for best practices on doing so.
 
 #### iOS 7.1
 If the app is running in foreground location updates will be turned on to enable background scanning. Otherwise a `UILocalNotification` will be presented. The primary function of the last one is to encourage the user to open the app because on iOS 7.1 it isn't possible to turn on location updates from the background. If he does so location updates will be turned on as if the app was running in foreground while he enters the region. The `UILocalNotification` can be changed with these properties of the `SPXStroeerProxityAPI` class:
