@@ -18,8 +18,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, "7.0"
 
-target 'TargetName' do
-pod 'stroeer-proxity', '~> 1.8'
+target 'YourTargetName' do
+  pod 'stroeer-proxity', '~> 1.10'
 end
 ```
 
@@ -29,62 +29,67 @@ Then, run the following command:
 $ pod install
 ```
 ___
-### Setup your App for background Scanning
-With region monitoring and background location usage scanning for beacons is also possible while your app is running in background. If you call `startScan` a `CLBeaconRegion` with the UUID of your beacons will be monitored. After the user or rather the device enters this region different things could happen depending on the status of the app and the iOS version.
 
-**Please note** that it's necessary to enable the background capability "Location updates" for your app by assigning "location" to the `UIBackgroundModes` key to your `info.plist`.
-For iOS 8 you also have to add the `NSLocationAlwaysUsageDescription` key to your `info.plist` file with a suitable value. Otherwise scanning in background won't be possible.
+### Setup your App for Beacon Scanning
+Scanning nearby beacons is realised with a mix of Beacon Region Monitoring and Beacon Ranging by using the CoreLocation API.
+Therefore it's necessary to enable the background capability "*Location updates*" for your app by assigning `location` to the `UIBackgroundModes` key to your `info.plist`.
+Furthermore you have to add the `NSLocationAlwaysUsageDescription` key to your `info.plist` file with a suitable value.
+
+```xml
+<key>NSLocationAlwaysUsageDescription</key>
+<string>Scan for blulocs</string>
+<key>UIBackgroundModes</key>
+<array>
+	<string>location</string>
+</array>
+```
+
 Also ensure that you comply to the latest App Store Review Guidelines:
 > 2.5.4 Multitasking apps may only use background services for their intended purposes: VoIP, audio playback, location, task completion, local notifications, etc. If your app uses location background mode, include a reminder that doing so may dramatically decrease battery life.
 
 > 5.1.5 Location Services: Use Location services in your app only when it is directly relevant to the features and services provided by the app. [...] If your app uses background location services, be sure to explain the purpose in your app; refer to the Human Interface Guidelines for best practices on doing so.
 
-#### iOS 7.1
-If the app is running in foreground location updates will be turned on to enable background scanning. Otherwise a `UILocalNotification` will be presented. The primary function of the last one is to encourage the user to open the app because on iOS 7.1 it isn't possible to turn on location updates from the background. If he does so location updates will be turned on as if the app was running in foreground while he enters the region. The `UILocalNotification` can be changed with these properties of the `SPXStroeerProxityAPI` class:
-
-```objective-c
-@property (nonatomic) NSString *backgroundScanningNotificationBody;
-@property (nonatomic) NSString *backgroundScanningNotificationSoundName;
-@property (nonatomic) NSString *backgroundScanningNotificationAction;
-```
-
-If the device leaves the region background scanning will be deactivated after a specific amount of time. The default time interval is ten minutes and can be adjusted with this property of the `SPXStroeerProxityAPI` class:
-
-```objective-c
-@property (nonatomic) NSTimeInterval backgroundScanningInactiveInterval;
-```
-
-#### iOS 8+
-Since iOS 8 it's possible to activate location updates not only if the app is running in foreground but also from the background. Therefore no `UILocalNotification` will be shown if the user enters a region. Background location updates will just be turned on. If the device leaves the region background location updates will be turned off immediately and not after a specific amount of time.
+#### iOS 7.0
+Scanning for beacons is no longer supported on iOS 7. It is still possible to integrate the SDK in a iOS 7 project but start scanning will throw an error.
 
 ___
+
 ### Setup the Ströer Proxity SDK
 
-#### 1. Set the Delegate (optional)
+To implement the SDK you just have to add two to three lines of code to your Application Delegate, for example inside the ``applicationWillEnterForeground:`` method.
+
+```objective-c
+[[SPXStroeerProxityAPI sharedInstance] setDelegate:self];  // Step 1 (optional)
+[[SPXStroeerProxityAPI sharedInstance] setApiKey:@""];     // Step 2
+[[SPXStroeerProxityAPI sharedInstance] startScan];         // Step 3
+```
+
+#### Step 1 - Set the Delegate (optional)
 In order to receive notifications from the SDK you have to implement the `SPXStroeerProxityAPIDelegate` protocol. Furthermore you have to set the delegate for the `SPXStroeerProxityAPI` class.
 
 ```objective-c
 [[SPXStroeerProxityAPI sharedInstance] setDelegate:self];
 ```
 
-#### 2. Authorize your App
+#### Step 2 - Authorize your App
 The next step is to authorize your app against the backend. Just set the Api-Key you received from Ströer.
 
 ```objective-c
-[[SPXStroeerProxityAPI sharedInstance] setApiKey:@""];    
+[[SPXStroeerProxityAPI sharedInstance] setApiKey:@""];
 ```
 
-#### 3. Start Scanning
+#### Step 3 - Start Scanning
 The last step is to start scanning for nearby beacons:
 
 ```objective-c
 [[SPXStroeerProxityAPI sharedInstance] startScan];
 ```
 
-Now the SDK scans for beacons near you and its scanning property will be set to true. This way you can find out whether the SDK is currently scanning or not. Since the SDK is scanning for nearby beacons, you might get notifications from it fairly soon.
+In the first stage the entered API-Key will be validated. Is the API-Key valid the location usage dialog will appear to the user.
+As soon the user has confirmed the dialog the SDK scans for nearby beacons and the SDK state has changed to scanning.
 
-#### 4. Stop Scanning
-When you're done with scanning, you simply call:
+#### Step 4 - Stop Scanning (optional)
+When you want to stop scanning, you simply call:
 ```objective-c
 [[SPXStroeerProxityAPI sharedInstance] stopScan];
 ```
@@ -100,7 +105,7 @@ The `SPXError` class provides an error message and an error code which can be on
 
 ```objective-c
 /**
- * An unknown error occured.
+ * An unknown error occurred.
  */
 SPXErrorCodeUnknown = 0,
 
@@ -115,59 +120,38 @@ SPXErrorCodeInvalidApiKey,
 SPXErrorCodeNetworkConnection,
 
 /**
- * This error is thrown if the device doesn't support ranging for beacons.
+ * This error is thrown if the device doesn't fully support ranging or monitoring for beacons.
  */
-SPXErrorCodeBeaconRangingNotSupported,
+SPXErrorCodeDeviceNotSupported,
+
+/**
+ * This error is thrown if the bluetooth is not available.
+ */
+SPXErrorCodeBluetoothNotAvailable,
 
 /**
  * This error is thrown if the user has denied the usage of the location services.
  */
-SPXErrorCodeLocationUsageDenied,
+SPXErrorCodeLocationUsageDenied
 
-/**
- * This error is thrown if the device isn't located in one of the supported countries.
- */
-SPXErrorCodeCurrentLocationNotSupported
 ```
-
 
 ___
 
 ### SDK State
-There are three possible states in which the SDK can be: `SPXStateNone`, `SPXStateRegionCheck`, `SPXStateOffline` and `SPXStateOnline`. Dependening on the state scanning for near beacons is active or not.
+There are three possible states in which the SDK can be:
 
 #### SPXStateNone
 This is the default state before you have done anything. In this state scanning isn't active and no delegate method will be called. To switch to another state you have to call the `startScan` method.
 
-#### SPXStateRegionCheck
-In this state the SDK is checking whether the current location of the user is supported by the SDK or not. In case of the latter the scanning process will stop immediately.
+### SPXStateBluetoothCheck
+In this state the SDK checks if bluetooth turned on.
 
-#### SPXStateOffline
-The offline state means that scanning is active but the SDK was not able to download the latest data from the server yet.
+#### SPXStateAPIKeyValidation
+In this state the specified API Key will be verified.
 
-#### SPXStateOnline
-This state means that you have successfully authenticated against the server, the latest data was downloaded and scanning is active.
-
-___
-
-### Scan Period
-It's possible to define a period of time which is used to collect raw beacon data before they will be analysed:
-
-```objective-c
-@property (nonatomic) CGFloat scanPeriod;
-```
-
-The default value is five seconds. In this time the SDK will collect all scanned beacon informations in your vicinity. After this time span you get informed if there were any results, e.g. a received action.
-
-___
-
-### Manual content update
-The SDK will update the local data automatically if the user has moved a certain distance. If you want to update the data manually in between you can use this method:
-
-```objective-c
-- (void)updateContentFromServerWithSuccessBlock:(nullable void (^)())successBlock
-                                     errorBlock:(nullable void (^)(SPXError *error))errorBlock;
-```
+#### SPXStateScanning
+This state means that scanning is active.
 
 ___
 
@@ -204,20 +188,15 @@ The path to the log file is stored in the `logFile` property. If you want to del
 [[SPXStroeerProxityAPI sharedInstance] deleteLogFile];
 ```
 
-#### Scanned Beacons
-This delegate method informs you about the amount of scanned beacons during the last scan interval.
+#### Entered and left Beacons
+This delegate method informs you about which beacon was entered and left.
 ```objective-c
-- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi didScanBeacons:(nullable NSMutableArray<SPXBeacon*>*)scannedBeacons;
+- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi didEnterBeacon:(SPXBeacon*)beacon;
+- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi didExitBeacon:(SPXBeacon*)beacon;
 ```
 
 #### Send Analytics Events
 Each time an analytics event was sent to the server you get informed by this callback.
 ```objective-c
 - (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi didSendAnalyticsEventForBeacon:(nullable SPXBeacon*)beacon;
-```
-
-#### Number of available beacons
-This delegate method tells you the amount of available beacons downloaded from the server for you current location.
-```objective-c
-- (void)stroeerProxityAPIContentUpdated:(SPXStroeerProxityAPI*)spxAPi numberOfBeacons:(NSInteger)numberOfBeacons;
 ```
