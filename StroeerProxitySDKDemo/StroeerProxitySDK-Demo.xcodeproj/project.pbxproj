@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		684629EDFFDDFEFB0CC02156 /* libPods-StroeerProxitySDK-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F65C4E1D05F5E61EFB248593 /* libPods-StroeerProxitySDK-Demo.a */; };
 		A7FCC45D1A66A52D00A53DFF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FCC45C1A66A52D00A53DFF /* main.m */; };
 		A7FCC4601A66A52D00A53DFF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FCC45F1A66A52D00A53DFF /* AppDelegate.m */; };
 		A7FCC4631A66A52D00A53DFF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FCC4621A66A52D00A53DFF /* ViewController.m */; };
@@ -16,10 +15,11 @@
 		A7FCC46B1A66A52D00A53DFF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7FCC4691A66A52D00A53DFF /* LaunchScreen.xib */; };
 		A7FCC4851A66B06D00A53DFF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FCC4841A66B06D00A53DFF /* Foundation.framework */; };
 		A7FCC4871A66B07100A53DFF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FCC4861A66B07100A53DFF /* UIKit.framework */; };
+		EAA5EA377ED4CFE385B94F2F /* libPods-StroeerProxitySDK-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BC2C9A27E1658984E640FD /* libPods-StroeerProxitySDK-Demo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		13D35CE43F22F1D28B4F0E79 /* Pods-StroeerProxitySDK-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StroeerProxitySDK-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StroeerProxitySDK-Demo/Pods-StroeerProxitySDK-Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		56B142D1BD314E8ACD9ADE1A /* Pods-StroeerProxitySDK-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StroeerProxitySDK-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StroeerProxitySDK-Demo/Pods-StroeerProxitySDK-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		A7FCC4571A66A52D00A53DFF /* StroeerProxitySDK-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "StroeerProxitySDK-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FCC45B1A66A52D00A53DFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7FCC45C1A66A52D00A53DFF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -32,8 +32,8 @@
 		A7FCC46A1A66A52D00A53DFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A7FCC4841A66B06D00A53DFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A7FCC4861A66B07100A53DFF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		E8BCF1EAAE9840DE2F3D7BA5 /* Pods-StroeerProxitySDK-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StroeerProxitySDK-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-StroeerProxitySDK-Demo/Pods-StroeerProxitySDK-Demo.release.xcconfig"; sourceTree = "<group>"; };
-		F65C4E1D05F5E61EFB248593 /* libPods-StroeerProxitySDK-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StroeerProxitySDK-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7BC2C9A27E1658984E640FD /* libPods-StroeerProxitySDK-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StroeerProxitySDK-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDBE65B813DD35EE63D11EB1 /* Pods-StroeerProxitySDK-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StroeerProxitySDK-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-StroeerProxitySDK-Demo/Pods-StroeerProxitySDK-Demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,28 +43,28 @@
 			files = (
 				A7FCC4871A66B07100A53DFF /* UIKit.framework in Frameworks */,
 				A7FCC4851A66B06D00A53DFF /* Foundation.framework in Frameworks */,
-				684629EDFFDDFEFB0CC02156 /* libPods-StroeerProxitySDK-Demo.a in Frameworks */,
+				EAA5EA377ED4CFE385B94F2F /* libPods-StroeerProxitySDK-Demo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		374034AA9B45FC9B42F85EDF /* Frameworks */ = {
+		2476D5BCCDCC1BFEEA9EAE67 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F65C4E1D05F5E61EFB248593 /* libPods-StroeerProxitySDK-Demo.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		57F94321756043C103FCEFE9 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				13D35CE43F22F1D28B4F0E79 /* Pods-StroeerProxitySDK-Demo.debug.xcconfig */,
-				E8BCF1EAAE9840DE2F3D7BA5 /* Pods-StroeerProxitySDK-Demo.release.xcconfig */,
+				56B142D1BD314E8ACD9ADE1A /* Pods-StroeerProxitySDK-Demo.debug.xcconfig */,
+				EDBE65B813DD35EE63D11EB1 /* Pods-StroeerProxitySDK-Demo.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		5128AD2DE9E00F2839502546 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7BC2C9A27E1658984E640FD /* libPods-StroeerProxitySDK-Demo.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A7FCC44E1A66A52D00A53DFF = {
@@ -74,8 +74,8 @@
 				A7FCC4841A66B06D00A53DFF /* Foundation.framework */,
 				A7FCC4591A66A52D00A53DFF /* StroeerProxitySDK-Demo */,
 				A7FCC4581A66A52D00A53DFF /* Products */,
-				57F94321756043C103FCEFE9 /* Pods */,
-				374034AA9B45FC9B42F85EDF /* Frameworks */,
+				2476D5BCCDCC1BFEEA9EAE67 /* Pods */,
+				5128AD2DE9E00F2839502546 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,8 +140,9 @@
 		A7FCC44F1A66A52D00A53DFF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "bluloc GmbH";
+				CLASSPREFIX = "";
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Ströer";
 				TargetAttributes = {
 					A7FCC4561A66A52D00A53DFF = {
 						CreatedOnToolsVersion = 6.1;
@@ -197,7 +198,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9CCBC83807D1402E09A205D6 /* [CP] Embed Pods Frameworks */ = {
@@ -278,8 +279,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -288,6 +291,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -300,7 +304,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -321,8 +325,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -330,13 +336,14 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -346,7 +353,7 @@
 		};
 		A7FCC47B1A66A52E00A53DFF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13D35CE43F22F1D28B4F0E79 /* Pods-StroeerProxitySDK-Demo.debug.xcconfig */;
+			baseConfigurationReference = 56B142D1BD314E8ACD9ADE1A /* Pods-StroeerProxitySDK-Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -365,7 +372,7 @@
 		};
 		A7FCC47C1A66A52E00A53DFF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8BCF1EAAE9840DE2F3D7BA5 /* Pods-StroeerProxitySDK-Demo.release.xcconfig */;
+			baseConfigurationReference = EDBE65B813DD35EE63D11EB1 /* Pods-StroeerProxitySDK-Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

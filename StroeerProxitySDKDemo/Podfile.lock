@@ -14,49 +14,29 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - CocoaLumberjack (2.3.0):
-    - CocoaLumberjack/Default (= 2.3.0)
-    - CocoaLumberjack/Extensions (= 2.3.0)
-  - CocoaLumberjack/Core (2.3.0)
-  - CocoaLumberjack/Default (2.3.0):
-    - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.3.0):
-    - CocoaLumberjack/Default
-  - EasyMapping (0.18.1):
-    - EasyMapping/Core (= 0.18.1)
-  - EasyMapping/Core (0.18.1)
-  - MQTTClient (0.8.1):
-    - MQTTClient/Core (= 0.8.1)
-  - MQTTClient/Core (0.8.1):
+  - MQTTClient (0.8.5):
+    - MQTTClient/Core (= 0.8.5)
+  - MQTTClient/Core (0.8.5):
     - MQTTClient/Manager
     - MQTTClient/Min
-  - MQTTClient/Manager (0.8.1):
+  - MQTTClient/Manager (0.8.5):
     - MQTTClient/Min
-  - MQTTClient/Min (0.8.1):
-    - CocoaLumberjack
+  - MQTTClient/Min (0.8.5)
   - Reachability (3.2)
-  - Realm (0.103.2):
-    - Realm/Headers (= 0.103.2)
-  - Realm/Headers (0.103.2)
-  - stroeer-proxity (1.8.0):
+  - stroeer-proxity (1.10.0):
     - AFNetworking (~> 3.1)
-    - EasyMapping (~> 0.18)
     - MQTTClient (~> 0.8)
     - Reachability (~> 3.2)
-    - Realm (~> 0.103)
 
 DEPENDENCIES:
-  - stroeer-proxity (~> 1.8)
+  - stroeer-proxity
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
-  EasyMapping: 2637b5bac13b6450bc799c28791a419e58c946b0
-  MQTTClient: 097b1e62c319f7c90b489fa540038064afc95f42
+  MQTTClient: fca939bcd74aa70af2d8ee35f3e44f258f4e9888
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  Realm: 448f0416079fe5b0ed947e7d86f3c4e1c75826cb
-  stroeer-proxity: 64cc5bd94bd7ef8428dca7e3901398a80c0bf86b
+  stroeer-proxity: 6474b68dbab716e948103b337e8d72a5f7554cd6
 
-PODFILE CHECKSUM: 6de6943cd0008f7dfa572e4efb624118de1b21b9
+PODFILE CHECKSUM: c2a1748136fc88bc7b9f62f06e9ff83f6bc7e04d
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

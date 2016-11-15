@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,70 +19,58 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jlu-Ao-siM">
-                                <rect key="frame" x="242" y="163" width="116" height="41"/>
+                                <rect key="frame" x="93" y="162" width="189" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <state key="normal" title="Start Scan">
-                                    <color key="titleColor" red="0.0" green="0.76388572079999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.0" green="0.76388572079999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <state key="disabled">
-                                    <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="start:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AN1-fz-F3k"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Twy-7I-ZP6">
-                                <rect key="frame" x="243" y="395" width="115" height="41"/>
+                                <rect key="frame" x="35" y="372" width="304" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <state key="normal" title="Stop Scan">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <state key="disabled">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="stop:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V7H-u6-zJ0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUp-2j-YLg">
-                                <rect key="frame" x="260" y="279" width="81" height="41"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <state key="normal" title="Update">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="disabled">
-                                    <color key="titleColor" white="1" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="update:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ejA-M4-ldB"/>
-                                </connections>
-                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="PUp-2j-YLg" secondAttribute="centerY" id="Knb-hy-fF8"/>
-                            <constraint firstItem="PUp-2j-YLg" firstAttribute="top" secondItem="Jlu-Ao-siM" secondAttribute="bottom" constant="75" id="SvQ-Wu-uvG"/>
-                            <constraint firstAttribute="centerX" secondItem="PUp-2j-YLg" secondAttribute="centerX" id="Xn5-Qf-jym"/>
-                            <constraint firstItem="Twy-7I-ZP6" firstAttribute="top" secondItem="PUp-2j-YLg" secondAttribute="bottom" constant="75" id="flY-FW-WtX"/>
-                            <constraint firstAttribute="centerX" secondItem="Twy-7I-ZP6" secondAttribute="centerX" id="fqL-Ws-xc6"/>
+                            <constraint firstItem="Jlu-Ao-siM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="77" id="5GM-Oe-BO9"/>
+                            <constraint firstItem="Twy-7I-ZP6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="19" id="JqI-4h-pyo"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Twy-7I-ZP6" secondAttribute="bottom" constant="254" id="LUF-FU-ZvB"/>
+                            <constraint firstItem="Jlu-Ao-siM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="142" id="WJS-UB-aM0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jlu-Ao-siM" secondAttribute="trailing" constant="77" id="fSY-ig-lMX"/>
+                            <constraint firstItem="Twy-7I-ZP6" firstAttribute="centerX" secondItem="Jlu-Ao-siM" secondAttribute="centerX" id="fhv-16-E8r"/>
+                            <constraint firstItem="Jlu-Ao-siM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="77" id="oDF-gF-d7R"/>
                             <constraint firstAttribute="centerX" secondItem="Jlu-Ao-siM" secondAttribute="centerX" id="y3A-mm-jyt"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="startButton" destination="Jlu-Ao-siM" id="TRC-fe-wqN"/>
                         <outlet property="stopButton" destination="Twy-7I-ZP6" id="iZf-18-HqU"/>
-                        <outlet property="updateButton" destination="PUp-2j-YLg" id="H4x-NI-nGT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="797" y="550"/>
+            <point key="canvasLocation" x="796" y="549.17541229385313"/>
         </scene>
     </scenes>
 </document>
