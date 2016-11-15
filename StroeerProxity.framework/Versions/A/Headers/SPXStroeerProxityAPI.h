@@ -1,7 +1,6 @@
 //
 //  SPXStroeerProxityAPI.h
 //
-//  Copyright (c) 2015 match2blue GmbH. All rights reserved.
 //
 
 #import <CoreBluetooth/CoreBluetooth.h>
@@ -17,29 +16,44 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * Possible states in which the controller can be. Depending on the state scanning for beacons is possible or not.
+ * Possible states in which the controller can be.
  */
 typedef NS_ENUM(NSInteger, SPXState)
 {
     /**
-     *  @p SPXStroeerProxityAPI hasn't been setup yet. In this state scanning isn't possible.
+     *  The SDK does not scan for nearby beacons.
      */
     SPXStateNone = 0,
+    
+    /**
+     * In this state the SDK checks if bluetooth turned on.
+     */
+    SPXStateBluetoothCheck,
+    
+    /**
+     * In this state the specified API Key will be verified.
+     */
+    SPXStateAPIKeyValidation,
 
+    /**
+     * The SDK scans for nearby beacons.
+     */
+    SPXStateScanning,
+    
     /**
      *  @p SPXStroeerProxityAPI validates the current region of the device.
      */
-    SPXStateRegionCheck,
+    SPXStateRegionCheck __deprecated,
 
     /**
      *  Setup of the @p SPXStroeerProxityAPI was successful but the data isn't up to date. In this state scanning is possible.
      */
-    SPXStateOffline,
+    SPXStateOffline __deprecated,
     
     /**
      *  Setup of the @p SPXStroeerProxityAPI was successful and the data is up to date . In this state scanning is possible.
      */
-    SPXStateOnline
+    SPXStateOnline __deprecated
 };
 
 #pragma mark - SPXStroeerProxityAPI
@@ -60,7 +74,7 @@ typedef NS_ENUM(NSInteger, SPXState)
 @property (nonatomic) id<SPXStroeerProxityAPIDelegate> delegate;
 
 /**
- *  Returns the current state of the @p SPXStroeerProxityAPI. The state will be updated during the setup process or in the @p updateContentFromServer method. Default value is @p SPXStateNone
+ *  Returns the current state of the @p SPXStroeerProxityAPI.
  */
 @property (nonatomic, readonly) SPXState state;
 
@@ -84,7 +98,6 @@ typedef NS_ENUM(NSInteger, SPXState)
  */
 + (NSString *)sdkVersion;
 
-
 #pragma mark - Scanning
 
 
@@ -93,20 +106,22 @@ typedef NS_ENUM(NSInteger, SPXState)
  *  Default value are 5 seconds and the minimum scan period amounts to two seconds.
  *  The custom scan period has to be set before start scanning with the @p startScan method.
  */
-@property (nonatomic) CGFloat scanPeriod;
+@property (nonatomic) CGFloat scanPeriod __deprecated;
 
 /**
- * This method downloads the latest data asynchon from the server and starts scanning for nearby beacons until @p stopScan was called.
- * To setup a custom scan period the property @p scanPeriod can be used.
+ * Determines wheter the device is supported by the SDK or not.
+ *
+ *  @return @p Yes, if the device is supported and can be used for scanning. 
+ */
++ (BOOL)isCurrentDeviceSupported;
+
+/**
+ * This method starts scanning for nearby beacons until @p stopScan was called.
  *
  * @b Background-Scanning
  *
  * To enable scanning in background it is necessary to enable the background capability "Location updates" for your app.
  * For iOS 8 you have also to add the @p NSLocationAlwaysUsageDescription key to the @p info.plist file with a suitable value.
- *
- * If the app is running in background, scanning is active and the device comes in the vicinity of one of your beacons a @p UILocalNotification will be shown on devices running iOS 7.
- * This @p UILocalNotification is used to encourage the user to open the app and background scanning can be activated.
- * For devices running iOS 8 or higher background scanning will just activated without such a @p UILocalNotification.
  */
 - (void)startScan;
 
@@ -134,7 +149,7 @@ typedef NS_ENUM(NSInteger, SPXState)
  *
  *  @note This property isn't used on devices running iOS 8 or higher.
  */
-@property (nonatomic, nullable) NSString *backgroundScanningNotificationBody;
+@property (nonatomic, nullable) NSString *backgroundScanningNotificationBody __deprecated_msg("iOS 7 not supported anymore. Method no longer necessary.");
 
 /**
  *  If the app is running in background, scanning is active and the device comes in the vicinity of one of your beacons a @p UILocalNotification will be shown on devices running iOS 7.
@@ -148,7 +163,7 @@ typedef NS_ENUM(NSInteger, SPXState)
  *
  *  @see The @p soundName property of the @p UILocalNotification class for further information.
  */
-@property (nonatomic, nullable) NSString *backgroundScanningNotificationSoundName;
+@property (nonatomic, nullable) NSString *backgroundScanningNotificationSoundName __deprecated_msg("iOS 7 not supported anymore. Method no longer necessary.");
 
 /**
  *  If the app is running in background, scanning is active and the device comes in the vicinity of one of your beacons a @p UILocalNotification will be shown on devices running iOS 7.
@@ -160,7 +175,7 @@ typedef NS_ENUM(NSInteger, SPXState)
  *
  *  @note This property isn't used on devices running iOS 8 or higher.
  */
-@property (nonatomic, nullable) NSString *backgroundScanningNotificationAction;
+@property (nonatomic, nullable) NSString *backgroundScanningNotificationAction __deprecated_msg("iOS 7 not supported anymore. Method no longer necessary.");
 
 /**
  *  If the app is running in background, scanning is active and the device comes in the vicinity of one of your beacons a @p UILocalNotification will be shown on devices running iOS 7.
@@ -172,14 +187,14 @@ typedef NS_ENUM(NSInteger, SPXState)
  *
  *  @note This property isn't used on devices running iOS 8 or higher.
  */
-@property (nonatomic) NSTimeInterval backgroundScanningInactiveInterval;
+@property (nonatomic) NSTimeInterval backgroundScanningInactiveInterval __deprecated_msg("iOS 7 not supported anymore. Method no longer necessary.");
 
 /**
  *  This method checks if the device supports beacon region monitoring and background scanning can be used.
  *
  *  @return @p Yes, if background scanning is supported.
  */
-+ (BOOL)backgroundScanningSupportedByDevice;
++ (BOOL)backgroundScanningSupportedByDevice __deprecated_msg("iOS 7 not supported anymore. Method no longer necessary. Use the isCurrentDeviceSupported method instead.");
 
 
 #pragma mark - Data Management
@@ -197,7 +212,7 @@ typedef NS_ENUM(NSInteger, SPXState)
  *  Furthermore it resets the connection to the server and stops the scanning process if started yet.
  *  The @p state will be updated to @p SPXStateNone.
  */
-- (void)resetToDefaultValues;
+- (void)resetToDefaultValues __deprecated;
 
 /**
  *  Method to force updating the data from the server on the device.
@@ -211,7 +226,7 @@ typedef NS_ENUM(NSInteger, SPXState)
  *
  */
 - (void)updateContentFromServerWithSuccessBlock:(nullable void (^)())successBlock
-                                     errorBlock:(nullable void (^)(SPXError *error))errorBlock;
+                                     errorBlock:(nullable void (^)(SPXError *error))errorBlock __deprecated;
 
 
 #pragma mark - Analytics
@@ -221,7 +236,7 @@ typedef NS_ENUM(NSInteger, SPXState)
  *  With this property the creation of new analytics events can be prevented.
  *  Any unsent events will also be deleted. As default analytics is enabled.
  */
-@property (nonatomic, getter=isAnalyticsEnabeld) BOOL analyticsEnabled;
+@property (nonatomic, getter=isAnalyticsEnabled) BOOL analyticsEnabled;
 
 
 #pragma mark - Outdoor Positioning
@@ -232,7 +247,7 @@ typedef NS_ENUM(NSInteger, SPXState)
  *
  *  @note The default value is @p NO.
  */
-@property (nonatomic, getter=isSlidingWindowEnabled) BOOL slidingWindowEnabled;
+@property (nonatomic, getter=isSlidingWindowEnabled) BOOL slidingWindowEnabled __deprecated;
 
 /**
  *  If you also want to retrieve outdoor position updates (GPS) set this property to @p YES.
@@ -243,13 +258,13 @@ typedef NS_ENUM(NSInteger, SPXState)
  *
  *  @note The @p state of SDK must be either @p SPXStateOffline or @p SPXStateOnline.
  */
-@property (nonatomic, getter=isOutdoorPositioningEnabled) BOOL outdoorPositioningEnabled;
+@property (nonatomic, getter=isOutdoorPositioningEnabled) BOOL outdoorPositioningEnabled __deprecated;
 
 /**
  *  Specify the desired outoor location accuracy. 
  *  Default value: @p kCLLocationAccuracyBest
  */
-@property (nonatomic) CLLocationAccuracy outdoorPositioningAccuracy;
+@property (nonatomic) CLLocationAccuracy outdoorPositioningAccuracy __deprecated;
 
 
 #pragma mark - Logging
@@ -268,6 +283,13 @@ typedef NS_ENUM(NSInteger, SPXState)
  * Deletes the create logfile.
  */
 - (void)deleteLogFile;
+
+#pragma mark - Helper
+
+/**
+ * Converts the given SPXState to a String.
+ */
++ (NSString*)stringFromSPXState:(SPXState)state;
 
 @end
 
@@ -318,15 +340,25 @@ typedef NS_ENUM(NSInteger, SPXState)
  *
  *  @param location     The new location.
  */
-- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi locationUpdated:(nullable SPXLocation *)location;
+- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi locationUpdated:(nullable SPXLocation *)location __deprecated;
 
 /**
  *  Informs the delegate which beacons were ranged during the last scan interval.
  */
-- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi didScanBeacons:(nullable NSMutableArray<SPXBeacon*>*)scannedBeacons;
+- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi didScanBeacons:(nullable NSMutableArray<SPXBeacon*>*)scannedBeacons __deprecated;
 
 /**
- *  Will be called if a bluloc zone analytics event was successfully sent to the backend.
+ *  Informs the delegate that a beacon was entered.
+ */
+- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi didEnterBeacon:(SPXBeacon*)beacon;
+
+/**
+ *  Informs the delegate that a beacon was left.
+ */
+- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi didExitBeacon:(SPXBeacon*)beacon;
+
+/**
+ *  Will be called if a zone event was successfully sent to the backend.
  */
 - (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi didSendAnalyticsEventForBeacon:(nullable SPXBeacon*)beacon;
 
@@ -335,7 +367,7 @@ typedef NS_ENUM(NSInteger, SPXState)
  *
  *  @param numberOfBeacons The number of beacons downloaded from the server.
  */
-- (void)stroeerProxityAPIContentUpdated:(SPXStroeerProxityAPI*)spxAPi numberOfBeacons:(NSInteger)numberOfBeacons;
+- (void)stroeerProxityAPIContentUpdated:(SPXStroeerProxityAPI*)spxAPi numberOfBeacons:(NSInteger)numberOfBeacons __deprecated;
 
 @end
 

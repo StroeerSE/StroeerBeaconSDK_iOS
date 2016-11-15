@@ -1,7 +1,6 @@
 //
 //  SPXLocation.h
 //
-//  Copyright © 2015 match2blue. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -14,6 +13,7 @@ static CLLocationAccuracy const SPXUnknownLocationAccuracy = -1;
 /**
  *  This class represents a outdoor location.
  */
+__deprecated
 @interface SPXLocation : NSObject <NSCopying, NSCoding>
 
 /**

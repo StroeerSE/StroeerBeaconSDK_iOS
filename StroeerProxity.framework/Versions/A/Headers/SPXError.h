@@ -1,9 +1,6 @@
 //
 //  SPXError.h
-//  bluloc
 //
-//  Created by René Fischer on 08/07/16.
-//  Copyright © 2016 match2blue. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -15,7 +12,7 @@
 typedef NS_ENUM(NSInteger, SPXErrorCode)
 {
     /**
-     * An unknown error occured.
+     * An unknown error occurred.
      */
     SPXErrorCodeUnknown = 0,
     
@@ -30,9 +27,14 @@ typedef NS_ENUM(NSInteger, SPXErrorCode)
     SPXErrorCodeNetworkConnection,
     
     /**
-     * This error is thrown if the device doesn't support ranging for beacons.
+     * This error is thrown if the device doesn't fully support ranging or monitoring for beacons.
      */
-    SPXErrorCodeBeaconRangingNotSupported,
+    SPXErrorCodeDeviceNotSupported,
+    
+    /**
+     * This error is thrown if the bluetooth is not available.
+     */
+    SPXErrorCodeBluetoothNotAvailable,
     
     /**
      * This error is thrown if the user has denied the usage of the location services.
@@ -40,9 +42,14 @@ typedef NS_ENUM(NSInteger, SPXErrorCode)
     SPXErrorCodeLocationUsageDenied,
     
     /**
+     * This error is thrown if the device doesn't support ranging for beacons.
+     */
+    SPXErrorCodeBeaconRangingNotSupported __deprecated_msg("Use SPXErrorCodeDeviceNotSupported instead.") = SPXErrorCodeDeviceNotSupported,
+    
+    /**
      * This error is thrown if the device isn't located in one of the supported countries.
      */
-    SPXErrorCodeCurrentLocationNotSupported
+    SPXErrorCodeCurrentLocationNotSupported __deprecated_msg("There is no region check anymore.")
 };
 
 @interface SPXError : NSObject

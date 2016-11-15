@@ -1,7 +1,6 @@
 //
 //  StroeerProxity.h
 //
-//  Copyright (c) 2015 match2blue GmbH. All rights reserved.
 //
 
 #ifndef StroeerProxity_h
