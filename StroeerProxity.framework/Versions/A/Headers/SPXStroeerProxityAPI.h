@@ -38,22 +38,7 @@ typedef NS_ENUM(NSInteger, SPXState)
     /**
      * The SDK scans for nearby beacons.
      */
-    SPXStateScanning,
-    
-    /**
-     *  @p SPXStroeerProxityAPI validates the current region of the device.
-     */
-    SPXStateRegionCheck __deprecated,
-
-    /**
-     *  Setup of the @p SPXStroeerProxityAPI was successful but the data isn't up to date. In this state scanning is possible.
-     */
-    SPXStateOffline __deprecated,
-    
-    /**
-     *  Setup of the @p SPXStroeerProxityAPI was successful and the data is up to date . In this state scanning is possible.
-     */
-    SPXStateOnline __deprecated
+    SPXStateScanning
 };
 
 #pragma mark - SPXStroeerProxityAPI
@@ -100,14 +85,6 @@ typedef NS_ENUM(NSInteger, SPXState)
 
 #pragma mark - Scanning
 
-
-/**
- *  Defines the time in seconds that is used to collect beacon data before analysing them.
- *  Default value are 5 seconds and the minimum scan period amounts to two seconds.
- *  The custom scan period has to be set before start scanning with the @p startScan method.
- */
-@property (nonatomic) CGFloat scanPeriod __deprecated;
-
 /**
  * Determines wheter the device is supported by the SDK or not.
  *
@@ -136,136 +113,46 @@ typedef NS_ENUM(NSInteger, SPXState)
 - (BOOL)isScanning;
 
 
-#pragma mark - Background Scanning
-
-
-/**
- *  If the app is running in background, scanning is active and the device comes in the vicinity of one of your beacons a @p UILocalNotification will be shown on devices running iOS 7.
- *  This @p UILocalNotification is used to encourage the user to open the app and background scanning can be activated.
- *  For devices running iOS 8 or higher backround scanning will just activated without such a @p UILocalNotification.
- *
- *  With this property the value of the @p UILocalNotification alert body can be adjusted.
- *  Default value is "Open the app to enable background mode".
- *
- *  @note This property isn't used on devices running iOS 8 or higher.
- */
-@property (nonatomic, nullable) NSString *backgroundScanningNotificationBody __deprecated_msg("iOS 7 not supported anymore. Method no longer necessary.");
-
-/**
- *  If the app is running in background, scanning is active and the device comes in the vicinity of one of your beacons a @p UILocalNotification will be shown on devices running iOS 7.
- *  This @p UILocalNotification is used to encourage the user to open the app and background scanning can be activated.
- *  For devices running iOS 8 or higher backround scanning will just activated without such a @p UILocalNotification.
- *
- *  With this property the sound of the @p UILocalNotification can be adjusted.
- *  If not set the default system sound will be used.
- *
- *  @note This property isn't used on devices running iOS 8 or higher.
- *
- *  @see The @p soundName property of the @p UILocalNotification class for further information.
- */
-@property (nonatomic, nullable) NSString *backgroundScanningNotificationSoundName __deprecated_msg("iOS 7 not supported anymore. Method no longer necessary.");
-
-/**
- *  If the app is running in background, scanning is active and the device comes in the vicinity of one of your beacons a @p UILocalNotification will be shown on devices running iOS 7.
- *  This @p UILocalNotification is used to encourage the user to open the app and background scanning can be activated.
- *  For devices running iOS 8 or higher background scanning will just activated without such a @p UILocalNotification.
- *
- *  With this property the value of the @p UILocalNotification alert action can be adjusted.
- *  Default value is "Open".
- *
- *  @note This property isn't used on devices running iOS 8 or higher.
- */
-@property (nonatomic, nullable) NSString *backgroundScanningNotificationAction __deprecated_msg("iOS 7 not supported anymore. Method no longer necessary.");
-
-/**
- *  If the app is running in background, scanning is active and the device comes in the vicinity of one of your beacons a @p UILocalNotification will be shown on devices running iOS 7.
- *  This @p UILocalNotification is used to encourage the user to open the app and background scanning can be activated.
- *  For devices running iOS 8 or higher background scanning will just activated without such a @p UILocalNotification.
- *
- *  Background scanning will be deactivated after this amount of time in seconds if no own beacon was scanned.
- *  Default value are 600 seconds (10 minutes).
- *
- *  @note This property isn't used on devices running iOS 8 or higher.
- */
-@property (nonatomic) NSTimeInterval backgroundScanningInactiveInterval __deprecated_msg("iOS 7 not supported anymore. Method no longer necessary.");
-
-/**
- *  This method checks if the device supports beacon region monitoring and background scanning can be used.
- *
- *  @return @p Yes, if background scanning is supported.
- */
-+ (BOOL)backgroundScanningSupportedByDevice __deprecated_msg("iOS 7 not supported anymore. Method no longer necessary. Use the isCurrentDeviceSupported method instead.");
-
-
 #pragma mark - Data Management
 
 
 /**
- *  This method removes all cached data from the device.
- *  Furthermore it resets the connection to the server and stops the scanning process if started yet. 
- *  The @p state will be updated to @p SPXStateNone.
+ * This method removes all cached data from the device.
+ * Furthermore it resets the connection to the server and stops the scanning process if started yet.
+ * The @p state will be updated to @p SPXStateNone.
  */
 - (void)clearCachedData;
-
-/**
- *  This method resets all properties to their default values.
- *  Furthermore it resets the connection to the server and stops the scanning process if started yet.
- *  The @p state will be updated to @p SPXStateNone.
- */
-- (void)resetToDefaultValues __deprecated;
-
-/**
- *  Method to force updating the data from the server on the device.
- *
- *  @b Hint:
- *
- *  To force updates it's necessary that the @p state is @p SPXStateOnline.
- *
- * @param successBlock  Will be called if the content update was successful.
- * @param errorBlock    Will be called if the content update wasn't successful.
- *
- */
-- (void)updateContentFromServerWithSuccessBlock:(nullable void (^)())successBlock
-                                     errorBlock:(nullable void (^)(SPXError *error))errorBlock __deprecated;
 
 
 #pragma mark - Analytics
 
 
 /**
- *  With this property the creation of new analytics events can be prevented.
- *  Any unsent events will also be deleted. As default analytics is enabled.
+ * With this property the creation of new analytics events can be prevented.
+ * Any unsent events will also be deleted. As default analytics is enabled.
  */
 @property (nonatomic, getter=isAnalyticsEnabled) BOOL analyticsEnabled;
 
-
-#pragma mark - Outdoor Positioning
-
+/**
+ * If set, the custom advertising identifier will be added to each analytics event.
+ * This can be used to identify the user across different apps.
+ */
+@property (nonatomic, nullable) NSString *customAdvertisingId;
 
 /**
- *  Set to @p YES to enable the sliding window approach for positioning.
+ * If set, the The Advertising Identifier (IDFA) from iOS will be added to each analytics event.
+ * Default value is NO.
  *
- *  @note The default value is @p NO.
- */
-@property (nonatomic, getter=isSlidingWindowEnabled) BOOL slidingWindowEnabled __deprecated;
-
-/**
- *  If you also want to retrieve outdoor position updates (GPS) set this property to @p YES.
- *  To receive location updates you have to implement this method of the @p SPXStroeerProxityAPIDelegate:
- * @code
-        - (void)locationUpdated:(nullable SPXLocation *)location;
- * @endcode
+ * During the Submitting the App you have to answer questions about the IDFA. Indicate whether your app uses the Advertising Identifier, and if so, in what way. 
+ * If you checked No but Apple determine your app does use IDFA, your app will be put into the Invalid Binary status, and you will be notified by email.
+ * Similarly, if you checked Yes but your app uses IDFA in ways that don’t match the statements you checked, your app will be rejected by App Review and put into the Rejected status.
+ * In either case, when you resubmit the build, you will be presented with the IDFA questions again and can provide the appropriate answers.
  *
- *  @note The @p state of SDK must be either @p SPXStateOffline or @p SPXStateOnline.
+ * See The Advertising Identifier (IDFA) for more details about this step:
+ *
+ *   https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html#//apple_ref/doc/uid/TP40011225-CH33-SW8
  */
-@property (nonatomic, getter=isOutdoorPositioningEnabled) BOOL outdoorPositioningEnabled __deprecated;
-
-/**
- *  Specify the desired outoor location accuracy. 
- *  Default value: @p kCLLocationAccuracyBest
- */
-@property (nonatomic) CLLocationAccuracy outdoorPositioningAccuracy __deprecated;
-
+@property (nonatomic, getter=isAdvertisingTrackingEnabled) BOOL advertisingTrackingEnabled;
 
 #pragma mark - Logging
 
@@ -284,7 +171,9 @@ typedef NS_ENUM(NSInteger, SPXState)
  */
 - (void)deleteLogFile;
 
+
 #pragma mark - Helper
+
 
 /**
  * Converts the given SPXState to a String.
@@ -335,19 +224,6 @@ typedef NS_ENUM(NSInteger, SPXState)
 - (void)stroeerProxityAPIUsageOfLocationServicesDenied:(SPXStroeerProxityAPI*)spxAPi;
 
 /**
- *  Whenever a a new outdoor location was calculated this method will be triggered.
- *  A outdoor location will only be sent if @p outdoorPositioningEnabled is @p YES.
- *
- *  @param location     The new location.
- */
-- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi locationUpdated:(nullable SPXLocation *)location __deprecated;
-
-/**
- *  Informs the delegate which beacons were ranged during the last scan interval.
- */
-- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi didScanBeacons:(nullable NSMutableArray<SPXBeacon*>*)scannedBeacons __deprecated;
-
-/**
  *  Informs the delegate that a beacon was entered.
  */
 - (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi didEnterBeacon:(SPXBeacon*)beacon;
@@ -363,11 +239,14 @@ typedef NS_ENUM(NSInteger, SPXState)
 - (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi didSendAnalyticsEventForBeacon:(nullable SPXBeacon*)beacon;
 
 /**
- *  Will be called after the latest data where downloaded from the server.
- *
- *  @param numberOfBeacons The number of beacons downloaded from the server.
+ * An error occured while downloading the decryption keys from the backend. Crypto V2 Beacons can not be used.
  */
-- (void)stroeerProxityAPIContentUpdated:(SPXStroeerProxityAPI*)spxAPi numberOfBeacons:(NSInteger)numberOfBeacons __deprecated;
+- (void)loadingBeaconDecryptionKeysFailedForStroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi;
+
+/**
+ * The decryption keys were downloaded successful from the backend. Crypto V2 Beacons can be used.
+ */
+- (void)loadingBeaconDecryptionKeysSucceededForStroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi;
 
 @end
 

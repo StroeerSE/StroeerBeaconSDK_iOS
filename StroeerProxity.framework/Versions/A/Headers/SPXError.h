@@ -39,17 +39,7 @@ typedef NS_ENUM(NSInteger, SPXErrorCode)
     /**
      * This error is thrown if the user has denied the usage of the location services.
      */
-    SPXErrorCodeLocationUsageDenied,
-    
-    /**
-     * This error is thrown if the device doesn't support ranging for beacons.
-     */
-    SPXErrorCodeBeaconRangingNotSupported __deprecated_msg("Use SPXErrorCodeDeviceNotSupported instead.") = SPXErrorCodeDeviceNotSupported,
-    
-    /**
-     * This error is thrown if the device isn't located in one of the supported countries.
-     */
-    SPXErrorCodeCurrentLocationNotSupported __deprecated_msg("There is no region check anymore.")
+    SPXErrorCodeLocationUsageDenied    
 };
 
 @interface SPXError : NSObject
