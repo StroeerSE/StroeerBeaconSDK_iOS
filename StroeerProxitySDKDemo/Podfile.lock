@@ -14,16 +14,16 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - MQTTClient (0.8.5):
-    - MQTTClient/Core (= 0.8.5)
-  - MQTTClient/Core (0.8.5):
+  - MQTTClient (0.8.7):
+    - MQTTClient/Core (= 0.8.7)
+  - MQTTClient/Core (0.8.7):
     - MQTTClient/Manager
     - MQTTClient/Min
-  - MQTTClient/Manager (0.8.5):
+  - MQTTClient/Manager (0.8.7):
     - MQTTClient/Min
-  - MQTTClient/Min (0.8.5)
+  - MQTTClient/Min (0.8.7)
   - Reachability (3.2)
-  - stroeer-proxity (1.10.0):
+  - stroeer-proxity (2.0.0):
     - AFNetworking (~> 3.1)
     - MQTTClient (~> 0.8)
     - Reachability (~> 3.2)
@@ -33,9 +33,9 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  MQTTClient: fca939bcd74aa70af2d8ee35f3e44f258f4e9888
+  MQTTClient: 2842bdeab5a65eec75e0fcbbbd2a300946690fee
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  stroeer-proxity: 6474b68dbab716e948103b337e8d72a5f7554cd6
+  stroeer-proxity: a8174265a181405088542a8c515ce1e9315b26e7
 
 PODFILE CHECKSUM: c2a1748136fc88bc7b9f62f06e9ff83f6bc7e04d
 

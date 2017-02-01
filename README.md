@@ -1,5 +1,20 @@
 ## Ströer Proxity SDK
 
+<!-- TOC depthFrom:3 depthTo:3 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Installation with CocoaPods](#installation-with-cocoapods)
+- [Setup your App for Beacon Scanning](#setup-your-app-for-beacon-scanning)
+- [Setup the Ströer Proxity SDK](#setup-the-ströer-proxity-sdk)
+- [Advertising Identifier](#advertising-identifier)
+- [Error Handling](#error-handling)
+- [SDK State](#sdk-state)
+- [Bluetooth hardware state](#bluetooth-hardware-state)
+- [Location authorisation state](#location-authorisation-state)
+- [Debugging](#debugging)
+
+<!-- /TOC -->
+
+
 ### Installation with CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which simplifies the process of using 3rd-party libraries in projects. You can install it with the following command:
@@ -19,7 +34,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, "7.0"
 
 target 'YourTargetName' do
-  pod 'stroeer-proxity', '~> 1.10'
+  pod 'stroeer-proxity', '~> 2.0'
 end
 ```
 
@@ -95,6 +110,35 @@ When you want to stop scanning, you simply call:
 ```
 ___
 
+### Advertising Identifier
+
+The Ströer Proxity SDK provides two ways to identify a user across different apps in order to show targeted advertisements.
+```objective-c
+/**
+ * If set, the custom advertising identifier will be added to each analytics event.
+ * This can be used to identify the user across different apps.
+ */
+@property (nonatomic, nullable) NSString *customAdvertisingId;
+
+/**
+ * If set, the The Advertising Identifier (IDFA) from iOS will be added to each analytics event.
+ * Default value is NO.
+ */
+@property (nonatomic, getter=isAdvertisingTrackingEnabled) BOOL advertisingTrackingEnabled;
+```
+Use the `customAdvertisingId` property to specify your own advertising identifier.
+
+Be aware of the Apple Guidelines regarding the usage of the Advertising Identifier (IDFA):
+> During the Submitting the App you have to answer questions about the IDFA. Indicate whether your app uses the Advertising Identifier, and if so, in what way.
+If you checked No but Apple determine your app does use IDFA, your app will be put into the Invalid Binary status, and you will be notified by email.
+Similarly, if you checked Yes but your app uses IDFA in ways that don’t match the statements you checked, your app will be rejected by App Review and put into the Rejected status.
+In either case, when you resubmit the build, you will be presented with the IDFA questions again and can provide the appropriate answers.
+
+> See The Advertising Identifier (IDFA) for more details about this step:
+https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html#//apple_ref/doc/uid/TP40011225-CH33-SW8
+
+___
+
 ### Error Handling
 The `SPXStroeerProxityAPIDelegate` protocol provides a callback that informs you about occurred errors.
 ```objective-c
@@ -144,7 +188,7 @@ There are three possible states in which the SDK can be:
 #### SPXStateNone
 This is the default state before you have done anything. In this state scanning isn't active and no delegate method will be called. To switch to another state you have to call the `startScan` method.
 
-### SPXStateBluetoothCheck
+#### SPXStateBluetoothCheck
 In this state the SDK checks if bluetooth turned on.
 
 #### SPXStateAPIKeyValidation

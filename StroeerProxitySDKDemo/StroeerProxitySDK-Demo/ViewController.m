@@ -41,16 +41,22 @@ typedef NS_ENUM(NSInteger, UIState)
     // Specify your API Key
     [[SPXStroeerProxityAPI sharedInstance] setApiKey:@"TODO: set you api key"];
 
-    // For Debugging Purposes you can turn file logging on
+    // (optional) or Debugging Purposes you can turn file logging on
     [[SPXStroeerProxityAPI sharedInstance] setFileLoggingEnabled:YES];
 
-    // To delete an existing log file just call deleteLogFile
+    // (optional) To delete an existing log file just call deleteLogFile
     [[SPXStroeerProxityAPI sharedInstance] deleteLogFile];
 
     // To view the logifle you can use an internal viewer like UIDocumentInteractionController
     // or you download the file via Xcode
     NSLog(@"Logfile saved at: %@", [[SPXStroeerProxityAPI sharedInstance] logFile]);
 
+    // (optional)  Add the Advertisement Identifier (IDFA) from iOS to each analytics event
+    [[SPXStroeerProxityAPI sharedInstance] setAdvertisingTrackingEnabled:YES];
+    
+    // (optional) Set also a custom Advertisement Identifier (Could be the user-id)
+    [[SPXStroeerProxityAPI sharedInstance] setCustomAdvertisingId:@"TODO: Some user ID"];
+    
     [[SPXStroeerProxityAPI sharedInstance] startScan];
 }
 
