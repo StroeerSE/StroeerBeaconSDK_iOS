@@ -23,7 +23,7 @@ PODS:
     - MQTTClient/Min
   - MQTTClient/Min (0.8.7)
   - Reachability (3.2)
-  - stroeer-proxity (2.0.0):
+  - stroeer-proxity (2.0.3):
     - AFNetworking (~> 3.1)
     - MQTTClient (~> 0.8)
     - Reachability (~> 3.2)
@@ -35,7 +35,7 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   MQTTClient: 2842bdeab5a65eec75e0fcbbbd2a300946690fee
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  stroeer-proxity: a8174265a181405088542a8c515ce1e9315b26e7
+  stroeer-proxity: 749a95a53173d7c2c3f4410318a43053e8dd6f9c
 
 PODFILE CHECKSUM: c2a1748136fc88bc7b9f62f06e9ff83f6bc7e04d
 

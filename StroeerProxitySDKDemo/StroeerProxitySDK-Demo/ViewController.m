@@ -138,7 +138,7 @@ typedef NS_ENUM(NSInteger, UIState)
  * To check if bluetooth is either enabled or not the @p bluetoothEnabled property can be used.
  * This method will only be called if the target isn't the iphone simulator (@p TARGET_IPHONE_SIMULATOR not defined).
  */
-- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi bluetoothStateChangedFromState:(CBCentralManagerState)oldState toState:(CBCentralManagerState)newState
+- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi bluetoothStateChangedFromState:(CBManagerState)oldState toState:(CBManagerState)newState
 {
     // The status of bluetooth (BT) has changed. If the user has turned off BT we can show him a notification that this is a bad idea.
     NSLog(@"Bluetooth state has changed from %@ to %@.", [self stringFromCentralManagerState:oldState], [self stringFromCentralManagerState:newState]);
@@ -186,33 +186,33 @@ typedef NS_ENUM(NSInteger, UIState)
 
 #pragma mark - Helper methods
 
-- (NSString*)stringFromCentralManagerState:(CBCentralManagerState)state
+- (NSString*)stringFromCentralManagerState:(CBManagerState)state
 {
     switch (state)
     {
-        case CBCentralManagerStatePoweredOff:
+        case CBManagerStatePoweredOff:
         {
-            return @"CBCentralManagerStatePoweredOff";
+            return @"CBManagerStatePoweredOff";
         }
-        case CBCentralManagerStatePoweredOn:
+        case CBManagerStatePoweredOn:
         {
-            return @"CBCentralManagerStatePoweredOn";
+            return @"CBManagerStatePoweredOn";
         }
-        case CBCentralManagerStateResetting:
+        case CBManagerStateResetting:
         {
-            return @"CBCentralManagerStateResetting";
+            return @"CBManagerStateResetting";
         }
-        case CBCentralManagerStateUnauthorized:
+        case CBManagerStateUnauthorized:
         {
-            return @"CBCentralManagerStateUnauthorized";
+            return @"CBManagerStateUnauthorized";
         }
-        case CBCentralManagerStateUnknown:
+        case CBManagerStateUnknown:
         {
-            return @"CBCentralManagerStateUnknown";
+            return @"CBManagerStateUnknown";
         }
-        case CBCentralManagerStateUnsupported:
+        case CBManagerStateUnsupported:
         {
-            return @"CBCentralManagerStateUnsupported";
+            return @"CBManagerStateUnsupported";
         }
     }
     return nil;

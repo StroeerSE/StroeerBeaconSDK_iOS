@@ -32,6 +32,7 @@
 		A7FCC46A1A66A52D00A53DFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A7FCC4841A66B06D00A53DFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A7FCC4861A66B07100A53DFF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B02329D71E28D29D002BD0AF /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		B7BC2C9A27E1658984E640FD /* libPods-StroeerProxitySDK-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StroeerProxitySDK-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDBE65B813DD35EE63D11EB1 /* Pods-StroeerProxitySDK-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StroeerProxitySDK-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-StroeerProxitySDK-Demo/Pods-StroeerProxitySDK-Demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,6 +63,7 @@
 		5128AD2DE9E00F2839502546 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B02329D71E28D29D002BD0AF /* AdSupport.framework */,
 				B7BC2C9A27E1658984E640FD /* libPods-StroeerProxitySDK-Demo.a */,
 			);
 			name = Frameworks;

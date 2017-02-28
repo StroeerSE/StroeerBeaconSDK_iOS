@@ -5,6 +5,7 @@
 - [Installation with CocoaPods](#installation-with-cocoapods)
 - [Setup your App for Beacon Scanning](#setup-your-app-for-beacon-scanning)
 - [Setup the Ströer Proxity SDK](#setup-the-ströer-proxity-sdk)
+- [Ströer Proxity SDK Demo-Project](#ströer-proxity-sdk-demo-project)
 - [Advertising Identifier](#advertising-identifier)
 - [Error Handling](#error-handling)
 - [SDK State](#sdk-state)
@@ -13,7 +14,6 @@
 - [Debugging](#debugging)
 
 <!-- /TOC -->
-
 
 ### Installation with CocoaPods
 
@@ -43,6 +43,8 @@ Then, run the following command:
 ```bash
 $ pod install
 ```
+When the installation has finished you must open the `*.xcworkspace` instead of the `*.xcproject` file.
+
 ___
 
 ### Setup your App for Beacon Scanning
@@ -80,11 +82,14 @@ To implement the SDK you just have to add two to three lines of code to your App
 ```
 
 #### Step 1 - Set the Delegate (optional)
-In order to receive notifications from the SDK you have to implement the `SPXStroeerProxityAPIDelegate` protocol. Furthermore you have to set the delegate for the `SPXStroeerProxityAPI` class.
+In order to receive notifications/callbacks from the SDK you have to implement the `SPXStroeerProxityAPIDelegate` protocol which can be found in the `SPXStroeerProxityAPI.h` file. Furthermore you have to set the delegate for the `SPXStroeerProxityAPI` class.
 
 ```objective-c
 [[SPXStroeerProxityAPI sharedInstance] setDelegate:self];
 ```
+
+If you are new to Objective-C you can find an explanation about protocols in the official apple developer documentation
+https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/WorkingwithProtocols/WorkingwithProtocols.html
 
 #### Step 2 - Authorize your App
 The next step is to authorize your app against the backend. Just set the Api-Key you received from Ströer.
@@ -100,19 +105,40 @@ The last step is to start scanning for nearby beacons:
 [[SPXStroeerProxityAPI sharedInstance] startScan];
 ```
 
-In the first stage the entered API-Key will be validated. Is the API-Key valid the location usage dialog will appear to the user.
-As soon the user has confirmed the dialog the SDK scans for nearby beacons and the SDK state has changed to scanning.
+In the first stage the entered API-Key will be validated. In case the API-Key is valid the location usage dialog will appear to the user. As soon as the user has confirmed the dialog the SDK scans for nearby beacons and the SDK state has changed to scanning.
 
 #### Step 4 - Stop Scanning (optional)
-When you want to stop scanning, you simply call:
+If you want to stop scanning, you simply call:
 ```objective-c
 [[SPXStroeerProxityAPI sharedInstance] stopScan];
 ```
 ___
 
-### Advertising Identifier
+### Ströer Proxity SDK Demo-Project
+The StroeerProxitySDKDemo-Project demonstrates the usage of the Ströer Proxity SDK.
 
-The Ströer Proxity SDK provides two ways to identify a user across different apps in order to show targeted advertisements.
+#### Installation with CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which simplifies the process of using 3rd-party libraries in projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+> CocoaPods 1.0 or higher is recommended
+
+In order to install all necessary dependencies for the Ströer Proxity SDK Demo project you have to run the following command:
+
+```bash
+$ pod install
+```
+When the installation has finished you must open the `*.xcworkspace` instead of the `*.xcproject` file.
+
+___
+
+### Advertising Identifier
+In order to show targeted advertisements, the Ströer Proxity SDK provides two ways to identify a user across different apps.
+
 ```objective-c
 /**
  * If set, the custom advertising identifier will be added to each analytics event.
@@ -121,10 +147,13 @@ The Ströer Proxity SDK provides two ways to identify a user across different ap
 @property (nonatomic, nullable) NSString *customAdvertisingId;
 
 /**
- * If set, the The Advertising Identifier (IDFA) from iOS will be added to each analytics event.
- * Default value is NO.
+ * If set to YES, the The Advertising Identifier (IDFA) from iOS will be added to each analytics event.
+ * Default value is YES.
+ *
+ * [...]
  */
-@property (nonatomic, getter=isAdvertisingTrackingEnabled) BOOL advertisingTrackingEnabled;
+- (BOOL)setAdvertisingTrackingEnabled:(BOOL)advertisingTrackingEnabled;
+- (BOOL)isAdvertisingTrackingEnabled;
 ```
 Use the `customAdvertisingId` property to specify your own advertising identifier.
 
@@ -183,51 +212,51 @@ SPXErrorCodeLocationUsageDenied
 ___
 
 ### SDK State
-There are three possible states in which the SDK can be:
+The SDK may have one of the following three states:
 
 #### SPXStateNone
-This is the default state before you have done anything. In this state scanning isn't active and no delegate method will be called. To switch to another state you have to call the `startScan` method.
+This is the default state before you have not done anything. In this state scanning isn't active and no delegate method will be called. In order to switch to another state you have to call the `startScan` method.
 
 #### SPXStateBluetoothCheck
-In this state the SDK checks if bluetooth turned on.
+In this state the SDK will check if bluetooth is turned on.
 
 #### SPXStateAPIKeyValidation
 In this state the specified API Key will be verified.
 
 #### SPXStateScanning
-This state means that scanning is active.
+This state indicates that scanning is active.
 
 ___
 
 ### Bluetooth hardware state
-The current state of the bluetooth hardware is stored in the `bluetoothState` property of the `SPXStroeerProxityAPI` class and the `SPXStroeerProxityAPIDelegate` protocol informs you about changes of it:
+The current state of the bluetooth hardware is stored in the `bluetoothState` property of the `SPXStroeerProxityAPI` class. The `SPXStroeerProxityAPIDelegate` protocol provide related changes of that state:
 
 ```objective-c
-@property (nonatomic, readonly) CBCentralManagerState bluetoothState;
+@property (nonatomic, readonly) CBManagerState bluetoothState;
 
-- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi bluetoothStateChangedFromState:(CBCentralManagerState)oldState toState:(CBCentralManagerState)newState;
+- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi bluetoothStateChangedFromState:(CBManagerState)oldState toState:(CBManagerState)newState;
 ```
 
-If you implement this method, you could for example notify the user about the bluetooth state using a popup or whatever method you prefer.
+If you implement this method, you could, for example, notify the user about the bluetooth state using a popup or whatever method you prefer.
 
 ___
 
 ### Location authorisation state
-If the user of your app has denied the usage of location services you get informed about this change with this `SPXStroeerProxityAPIDelegate` protocol method:
+If the user of your app has denied the usage of location services, you will be informed about this change with this `SPXStroeerProxityAPIDelegate` protocol method:
 
 ```objective-c
 - (void)stroeerProxityAPIUsageOfLocationServicesDenied:(SPXStroeerProxityAPI*)spxAPi;
 ```
 
-Scanning for beacons will stop immediately after the user denies the usage of location services.
+Scanning for beacons will stop immediately after the user has denied the usage of location services.
 
 ___
 
 ### Debugging
 
 #### Logging
-In order to debug the SDK you can turn on file logging by setting the `fileLoggingEnabled` property to `YES`.
-The path to the log file is stored in the `logFile` property. If you want to delete the logfile you can call this method:
+In order to debug the SDK, you can turn on file logging by setting the `fileLoggingEnabled` property to `YES`.
+The path to the logfile is stored in the `logFile` property. If you want to delete the logfile you can call this method:
 ```objective-c
 [[SPXStroeerProxityAPI sharedInstance] deleteLogFile];
 ```
