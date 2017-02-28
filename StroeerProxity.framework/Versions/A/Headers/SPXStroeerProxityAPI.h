@@ -67,7 +67,7 @@ typedef NS_ENUM(NSInteger, SPXState)
  *  Contains the current state of the bluetooth hardware.
  *  This property will only be updated if the target isn't the iphone simulator (@p TARGET_IPHONE_SIMULATOR not defined).
  */
-@property (nonatomic, readonly) CBCentralManagerState bluetoothState;
+@property (nonatomic, readonly) CBManagerState bluetoothState;
 
 /**
  *  Returns the singleton instance of the @p SPXStroeerProxityAPI class. Use this method instead of @p init or @p new.
@@ -140,8 +140,11 @@ typedef NS_ENUM(NSInteger, SPXState)
 @property (nonatomic, nullable) NSString *customAdvertisingId;
 
 /**
- * If set, the The Advertising Identifier (IDFA) from iOS will be added to each analytics event.
- * Default value is NO.
+ * If set to YES, the The Advertising Identifier (IDFA) from iOS will be added to each analytics event.
+ * Default value is YES.
+ *
+ * This method returns YES if the user has enabled advertising tracking in the system settings ([[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]).
+ * If the user does not allow advertising tracking, it won't be enabled in the SDK.
  *
  * During the Submitting the App you have to answer questions about the IDFA. Indicate whether your app uses the Advertising Identifier, and if so, in what way. 
  * If you checked No but Apple determine your app does use IDFA, your app will be put into the Invalid Binary status, and you will be notified by email.
@@ -152,7 +155,8 @@ typedef NS_ENUM(NSInteger, SPXState)
  *
  *   https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html#//apple_ref/doc/uid/TP40011225-CH33-SW8
  */
-@property (nonatomic, getter=isAdvertisingTrackingEnabled) BOOL advertisingTrackingEnabled;
+- (BOOL)setAdvertisingTrackingEnabled:(BOOL)advertisingTrackingEnabled;
+- (BOOL)isAdvertisingTrackingEnabled;
 
 #pragma mark - Logging
 
@@ -215,7 +219,7 @@ typedef NS_ENUM(NSInteger, SPXState)
  * To check if bluetooth is either enabled or not the @p bluetoothEnabled property can be used.
  * This method will only be called if the target isn't the iphone simulator (@p TARGET_IPHONE_SIMULATOR not defined).
  */
-- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi bluetoothStateChangedFromState:(CBCentralManagerState)oldState toState:(CBCentralManagerState)newState;
+- (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi bluetoothStateChangedFromState:(CBManagerState)oldState toState:(CBManagerState)newState;
 
 /**
  *  This method will be called after the authorization status has changed to @p kCLAuthorizationStatusDenied or @p kCLAuthorizationStatusRestricted.
@@ -239,12 +243,12 @@ typedef NS_ENUM(NSInteger, SPXState)
 - (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi didSendAnalyticsEventForBeacon:(nullable SPXBeacon*)beacon;
 
 /**
- * An error occured while downloading the decryption keys from the backend. Crypto V2 Beacons can not be used.
+ * An error occured while downloading the decryption keys from the backend. The decryption keys are used to decrypt the Crypto V2 Beacons infrastructure.
  */
 - (void)loadingBeaconDecryptionKeysFailedForStroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi;
 
 /**
- * The decryption keys were downloaded successful from the backend. Crypto V2 Beacons can be used.
+ * The decryption keys were downloaded successful from the backend. The decryption keys are used to decrypt the Crypto V2 Beacons infrastructure.
  */
 - (void)loadingBeaconDecryptionKeysSucceededForStroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi;
 
