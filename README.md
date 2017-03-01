@@ -61,7 +61,7 @@ Furthermore you have to add the `NSLocationAlwaysUsageDescription` key to your `
 </array>
 ```
 
-Also ensure that you comply to the latest App Store Review Guidelines:
+Also ensure that you comply with the latest [Apple App Store Review Guidelines](https://developer.apple.com/app-store/review/guidelines/):
 > 2.5.4 Multitasking apps may only use background services for their intended purposes: VoIP, audio playback, location, task completion, local notifications, etc. If your app uses location background mode, include a reminder that doing so may dramatically decrease battery life.
 
 > 5.1.5 Location Services: Use Location services in your app only when it is directly relevant to the features and services provided by the app. [...] If your app uses background location services, be sure to explain the purpose in your app; refer to the Human Interface Guidelines for best practices on doing so.
@@ -137,7 +137,18 @@ When the installation has finished you must open the `*.xcworkspace` instead of 
 ___
 
 ### Advertising Identifier
-In order to show targeted advertisements, the Ströer Proxity SDK provides two ways to identify a user across different apps.
+The Ströer Proxity SDK provides two ways to set an advertising identifier in order to identify a user across different apps and show targeted advertisements.
+
+1. Use the Apple advertising ID.
+2. Define a custom advertising ID which is a custom string.
+
+Be aware of the Apple Guidelines regarding the usage of the Advertising Identifier (IDFA):
+> **NOTE:** By default the SDK tries to fetch the system advertising ID. According to the Apple guidelines the SDK will not read the advertising ID if the user has enabled `No Ad Tracking`.
+
+> During the Submitting the App you have to answer questions about the IDFA. Indicate whether your app uses the Advertising Identifier, and if so, in what way. If you checked No but Apple determine your app does use IDFA, your app will be put into the Invalid Binary status, and you will be notified by email. Similarly, if you checked `Yes` but your app uses IDFA in ways that don’t match the statements you checked, your app will be rejected by App Review and put into the Rejected status. In either case, when you resubmit the build, you will be presented with the IDFA questions again and can provide the appropriate answers.
+
+> See The Advertising Identifier (IDFA) for more details about this step:
+https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html#//apple_ref/doc/uid/TP40011225-CH33-SW8
 
 ```objective-c
 /**
@@ -156,15 +167,6 @@ In order to show targeted advertisements, the Ströer Proxity SDK provides two w
 - (BOOL)isAdvertisingTrackingEnabled;
 ```
 Use the `customAdvertisingId` property to specify your own advertising identifier.
-
-Be aware of the Apple Guidelines regarding the usage of the Advertising Identifier (IDFA):
-> During the Submitting the App you have to answer questions about the IDFA. Indicate whether your app uses the Advertising Identifier, and if so, in what way.
-If you checked No but Apple determine your app does use IDFA, your app will be put into the Invalid Binary status, and you will be notified by email.
-Similarly, if you checked Yes but your app uses IDFA in ways that don’t match the statements you checked, your app will be rejected by App Review and put into the Rejected status.
-In either case, when you resubmit the build, you will be presented with the IDFA questions again and can provide the appropriate answers.
-
-> See The Advertising Identifier (IDFA) for more details about this step:
-https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html#//apple_ref/doc/uid/TP40011225-CH33-SW8
 
 ___
 
