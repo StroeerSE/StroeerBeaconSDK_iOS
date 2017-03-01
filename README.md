@@ -143,7 +143,7 @@ The Ströer Proxity SDK provides two ways to set an advertising identifier in or
 2. Define a custom advertising ID which is a custom string.
 
 Be aware of the Apple Guidelines regarding the usage of the Advertising Identifier (IDFA):
-> **NOTE:** By default the SDK tries to fetch the system advertising ID. According to the Apple guidelines the SDK will not read the advertising ID if the user has enabled `No Ad Tracking`.
+> **NOTE:** By default the SDK tries to fetch the system advertising ID. According to the Apple guidelines the SDK will not read the advertising ID if the user has enabled `No Ad Tracking` on his device.
 
 > During the Submitting the App you have to answer questions about the IDFA. Indicate whether your app uses the Advertising Identifier, and if so, in what way. If you checked No but Apple determine your app does use IDFA, your app will be put into the Invalid Binary status, and you will be notified by email. Similarly, if you checked `Yes` but your app uses IDFA in ways that don’t match the statements you checked, your app will be rejected by App Review and put into the Rejected status. In either case, when you resubmit the build, you will be presented with the IDFA questions again and can provide the appropriate answers.
 
@@ -159,7 +159,7 @@ https://developer.apple.com/library/content/documentation/LanguagesUtilities/Con
 
 /**
  * If set to YES, the The Advertising Identifier (IDFA) from iOS will be added to each analytics event.
- * Default value is YES.
+ * Default setting within the SDK is YES.
  *
  * [...]
  */
