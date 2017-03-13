@@ -72,43 +72,53 @@ Scanning for beacons is no longer supported on iOS 7. It is still possible to in
 ___
 
 ### Setup the Ströer Proxity SDK
+#### Simple Implementation
 
-To implement the SDK you just have to add two to three lines of code to your Application Delegate, for example inside the ``applicationWillEnterForeground:`` method.
-
+To implement the SDK you just have to add two lines of code to your Application Delegate (e.g. inside the ``applicationWillEnterForeground`` method).
 ```objective-c
-[[SPXStroeerProxityAPI sharedInstance] setDelegate:self];  // Step 1 (optional)
-[[SPXStroeerProxityAPI sharedInstance] setApiKey:@""];     // Step 2
-[[SPXStroeerProxityAPI sharedInstance] startScan];         // Step 3
+[[SPXStroeerProxityAPI sharedInstance] setApiKey:@""];     // Step 1
+[[SPXStroeerProxityAPI sharedInstance] startScan];         // Step 2
 ```
 
-#### Step 1 - Set the Delegate (optional)
-In order to receive notifications/callbacks from the SDK you have to implement the `SPXStroeerProxityAPIDelegate` protocol which can be found in the `SPXStroeerProxityAPI.h` file. Furthermore you have to set the delegate for the `SPXStroeerProxityAPI` class.
+#### Advanced Implementation
+##### Step 1 - Set the Delegate (optional)
 
+In order to receive notifications/callbacks from the SDK you have to implement the `SPXStroeerProxityAPIDelegate` protocol which can be found in the `SPXStroeerProxityAPI.h` file. Furthermore you have to set the delegate for the `SPXStroeerProxityAPI` class.
 ```objective-c
 [[SPXStroeerProxityAPI sharedInstance] setDelegate:self];
 ```
 
-If you are new to Objective-C you can find an explanation about protocols in the official apple developer documentation
-https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/WorkingwithProtocols/WorkingwithProtocols.html
+If you are new to Objective-C you can find an explanation about protocols in the official apple developer documentation https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/WorkingwithProtocols/WorkingwithProtocols.html
 
-#### Step 2 - Authorize your App
+##### Step 2 - Authorize your App
 The next step is to authorize your app against the backend. Just set the Api-Key you received from Ströer.
-
 ```objective-c
 [[SPXStroeerProxityAPI sharedInstance] setApiKey:@""];
 ```
 
-#### Step 3 - Start Scanning
-The last step is to start scanning for nearby beacons:
+##### Step 3 - Set Custom Advertising Identifier (optional)
+If you want to add your own advertising identifier:
+```objective-c
+[[SPXStroeerProxityAPI sharedInstance] setCustomAdvertisingId:@"Your Custom Advertising ID"];
+```
 
+##### Step 4 - Disable reading the IDFA (optional)
+If you want to disable collecting the IDFA - not recommended) call:
+```objective-c
+BOOL res = [[SPXStroeerProxityAPI sharedInstance] setAdvertisingTrackingEnabled:NO];
+NSLog(res ? @"Result: YES" : @"Result: NO");
+```
+
+##### Step 5 - Start Scanning
+The last step is to start scanning for nearby beacons:
 ```objective-c
 [[SPXStroeerProxityAPI sharedInstance] startScan];
 ```
 
 In the first stage the entered API-Key will be validated. In case the API-Key is valid the location usage dialog will appear to the user. As soon as the user has confirmed the dialog the SDK scans for nearby beacons and the SDK state has changed to scanning.
 
-#### Step 4 - Stop Scanning (optional)
-If you want to stop scanning, you simply call:
+##### Step 6 - Stop Scanning (optional)
+If you want to stop scanning simply call:
 ```objective-c
 [[SPXStroeerProxityAPI sharedInstance] stopScan];
 ```
@@ -137,36 +147,52 @@ When the installation has finished you must open the `*.xcworkspace` instead of 
 ___
 
 ### Advertising Identifier
-The Ströer Proxity SDK provides two ways to set an advertising identifier in order to identify a user across different apps and show targeted advertisements.
+The Ströer Proxity SDK provides two ways to set an advertising identifier in order to identify a user across different apps and show targeted advertising.
 
-1. Use the Apple advertising ID.
-2. Define a custom advertising ID which is a custom string.
+**1. Use the Apple advertising ID (IDFA)**
+```objective-c
+/**
+ * If set to YES, the Advertising Identifier (IDFA) from iOS will be added to each analytics event.
+ * Default setting within the SDK is YES.
+ *
+ * BOOL res = [[SPXStroeerProxityAPI sharedInstance] setAdvertisingTrackingEnabled:YES];
+ * setter returns true, if customer wants to enable feature and limit-ad-tracking is disabled
+ * setter returns false, if customer wants to enable feature and limit-ad-tracking is enabled
+ *
+ * BOOL res = [[SPXStroeerProxityAPI sharedInstance] setAdvertisingTrackingEnabled:NO];
+ * setter returns true, if customer wants to disable feature and/or limit-ad-tracking is disabled
+ * setter returns false, if customer wants to disable feature and/or limit-ad-tracking is enabled
+ *
+ */
+- (BOOL)setAdvertisingTrackingEnabled:(BOOL)advertisingTrackingEnabled;
 
-Be aware of the Apple Guidelines regarding the usage of the Advertising Identifier (IDFA):
-> **NOTE:** By default the SDK tries to fetch the system advertising ID. According to the Apple guidelines the SDK will not read the advertising ID if the user has enabled `No Ad Tracking` on his device.
+/**
+ * You can check if Advertising Tracking is enabled on the user's device.
+ * returns true, if limit-ad-tracking is disabled
+ * returns false, if limit-ad-tracking is enabled
+ *
+ */
+- (BOOL)isAdvertisingTrackingEnabled;
+```
+By default the SDK tries to fetch the system advertising ID. According to the Apple advertising policy the SDK will not read the advertising ID if the user has enabled Limit Ad Tracking on his device.
+
+**2. Define a custom advertising ID which is a custom string**
+```objective-c
+/**
+ * Use `setCustomAdvertisingId` to specify your own advertising identifier.
+ * The custom advertising identifier will be added to each analytics event.
+ * This can be used to identify the user across different apps.
+ */
+(void)setCustomAdvertisingId:(NSString)*customAdvertisingId
+```
+
+Be aware of the Apple Guidelines regarding the usage of the Advertising Identifier:
+> **NOTE:** By default the SDK tries to fetch the system advertising ID. According to the Apple guidelines the SDK will not read the advertising ID if the user has enabled `Limit Ad Tracking` on his device.
 
 > During the Submitting the App you have to answer questions about the IDFA. Indicate whether your app uses the Advertising Identifier, and if so, in what way. If you checked No but Apple determine your app does use IDFA, your app will be put into the Invalid Binary status, and you will be notified by email. Similarly, if you checked `Yes` but your app uses IDFA in ways that don’t match the statements you checked, your app will be rejected by App Review and put into the Rejected status. In either case, when you resubmit the build, you will be presented with the IDFA questions again and can provide the appropriate answers.
 
 > See The Advertising Identifier (IDFA) for more details about this step:
 https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html#//apple_ref/doc/uid/TP40011225-CH33-SW8
-
-```objective-c
-/**
- * If set, the custom advertising identifier will be added to each analytics event.
- * This can be used to identify the user across different apps.
- */
-@property (nonatomic, nullable) NSString *customAdvertisingId;
-
-/**
- * If set to YES, the The Advertising Identifier (IDFA) from iOS will be added to each analytics event.
- * Default setting within the SDK is YES.
- *
- * [...]
- */
-- (BOOL)setAdvertisingTrackingEnabled:(BOOL)advertisingTrackingEnabled;
-- (BOOL)isAdvertisingTrackingEnabled;
-```
-Use the `customAdvertisingId` property to specify your own advertising identifier.
 
 ___
 
