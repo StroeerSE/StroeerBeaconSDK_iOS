@@ -156,12 +156,12 @@ The Ströer Proxity SDK provides two ways to set an advertising identifier in or
  * Default setting within the SDK is YES.
  *
  * BOOL res = [[SPXStroeerProxityAPI sharedInstance] setAdvertisingTrackingEnabled:YES];
- * setter returns true, if customer wants to enable feature and limit-ad-tracking is disabled
- * setter returns false, if customer wants to enable feature and limit-ad-tracking is enabled
+ * setter returns true, if you want to enable feature and limit-ad-tracking is disabled
+ * setter returns false, if you want to enable feature and limit-ad-tracking is enabled
  *
  * BOOL res = [[SPXStroeerProxityAPI sharedInstance] setAdvertisingTrackingEnabled:NO];
- * setter returns true, if customer wants to disable feature and/or limit-ad-tracking is disabled
- * setter returns false, if customer wants to disable feature and/or limit-ad-tracking is enabled
+ * setter returns true, if you want to disable feature and/or limit-ad-tracking is disabled
+ * setter returns false, if you want to disable feature and/or limit-ad-tracking is enabled
  *
  */
 - (BOOL)setAdvertisingTrackingEnabled:(BOOL)advertisingTrackingEnabled;
