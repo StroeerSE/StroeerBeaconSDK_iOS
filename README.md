@@ -149,7 +149,7 @@ ___
 ### Advertising Identifier
 The Ströer Proxity SDK provides two ways to set an advertising identifier in order to identify a user across different apps and show targeted advertising.
 
-**1. Use the Apple advertising ID (IDFA)**
+**1. Use the Apple Advertising ID (IDFA)**
 ```objective-c
 /**
  * If set to YES, the Advertising Identifier (IDFA) from iOS will be added to each analytics event.
@@ -176,6 +176,14 @@ The Ströer Proxity SDK provides two ways to set an advertising identifier in or
 ```
 By default the SDK tries to fetch the system advertising ID. According to the Apple advertising policy the SDK will not read the advertising ID if the user has enabled Limit Ad Tracking on his device.
 
+Be aware of the Apple Guidelines regarding the usage of the Advertising Identifier:
+> **NOTE:** By default the SDK tries to fetch the system advertising ID. According to the Apple guidelines the SDK will not read the advertising ID if the user has enabled `Limit Ad Tracking` on his device.
+
+> During the Submitting the App you have to answer questions about the IDFA. Indicate whether your app uses the Advertising Identifier, and if so, in what way. If you checked No but Apple determine your app does use IDFA, your app will be put into the Invalid Binary status, and you will be notified by email. Similarly, if you checked `Yes` but your app uses IDFA in ways that don’t match the statements you checked, your app will be rejected by App Review and put into the Rejected status. In either case, when you resubmit the build, you will be presented with the IDFA questions again and can provide the appropriate answers.
+
+> See The Advertising Identifier (IDFA) for more details about this step:
+https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html#//apple_ref/doc/uid/TP40011225-CH33-SW8
+
 **2. Define a custom advertising ID which is a custom string**
 ```objective-c
 /**
@@ -185,15 +193,6 @@ By default the SDK tries to fetch the system advertising ID. According to the Ap
  */
 (void)setCustomAdvertisingId:(NSString)*customAdvertisingId
 ```
-
-Be aware of the Apple Guidelines regarding the usage of the Advertising Identifier:
-> **NOTE:** By default the SDK tries to fetch the system advertising ID. According to the Apple guidelines the SDK will not read the advertising ID if the user has enabled `Limit Ad Tracking` on his device.
-
-> During the Submitting the App you have to answer questions about the IDFA. Indicate whether your app uses the Advertising Identifier, and if so, in what way. If you checked No but Apple determine your app does use IDFA, your app will be put into the Invalid Binary status, and you will be notified by email. Similarly, if you checked `Yes` but your app uses IDFA in ways that don’t match the statements you checked, your app will be rejected by App Review and put into the Rejected status. In either case, when you resubmit the build, you will be presented with the IDFA questions again and can provide the appropriate answers.
-
-> See The Advertising Identifier (IDFA) for more details about this step:
-https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html#//apple_ref/doc/uid/TP40011225-CH33-SW8
-
 ___
 
 ### Error Handling
