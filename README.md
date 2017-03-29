@@ -43,7 +43,7 @@ Then, run the following command:
 ```bash
 $ pod install
 ```
-When the installation has finished you must open the `*.xcworkspace` instead of the `*.xcproject` file.
+When the installation is finished you must open the `*.xcworkspace` instead of the `*.xcproject` file.
 
 ___
 
@@ -67,7 +67,7 @@ Also ensure that you comply with the latest [Apple App Store Review Guidelines](
 > 5.1.5 Location Services: Use Location services in your app only when it is directly relevant to the features and services provided by the app. [...] If your app uses background location services, be sure to explain the purpose in your app; refer to the Human Interface Guidelines for best practices on doing so.
 
 #### iOS 7.0
-Scanning for beacons is no longer supported on iOS 7. It is still possible to integrate the SDK in a iOS 7 project but start scanning will throw an error.
+Scanning for beacons is no longer supported on iOS 7. It is still possible to integrate the SDK in a iOS 7 project but starting the scan will throw an error.
 
 ___
 
@@ -103,10 +103,10 @@ If you want to add your own advertising identifier:
 ```
 
 ##### Step 4 - Disable reading the IDFA (optional)
-If you want to disable collecting the IDFA - not recommended) call:
+If you want to disable collecting the IDFA (not recommended) you have to call:
 ```objective-c
-BOOL res = [[SPXStroeerProxityAPI sharedInstance] setAdvertisingTrackingEnabled:NO];
-NSLog(res ? @"Result: YES" : @"Result: NO");
+BOOL isAdvertisingTrackingEnabled = [[SPXStroeerProxityAPI sharedInstance] setAdvertisingTrackingEnabled:NO];
+NSLog(@"isAdvertisingTrackingEnabled: %@", isAdvertisingTrackingEnabled ? @"YES" : @"NO");
 ```
 
 ##### Step 5 - Start Scanning
@@ -115,7 +115,7 @@ The last step is to start scanning for nearby beacons:
 [[SPXStroeerProxityAPI sharedInstance] startScan];
 ```
 
-In the first stage the entered API-Key will be validated. In case the API-Key is valid the location usage dialog will appear to the user. As soon as the user has confirmed the dialog the SDK scans for nearby beacons and the SDK state has changed to scanning.
+In the first stage the entered API-Key will be validated. In case the API-Key is valid the location usage dialog will appear to the user. As soon as the user has confirmed the dialog the SDK scans for nearby beacons and the SDK state changes to scanning.
 
 ##### Step 6 - Stop Scanning (optional)
 If you want to stop scanning simply call:
@@ -179,9 +179,9 @@ By default the SDK tries to fetch the system advertising ID. According to the Ap
 Be aware of the Apple Guidelines regarding the usage of the Advertising Identifier:
 > **NOTE:** By default the SDK tries to fetch the system advertising ID. According to the Apple guidelines the SDK will not read the advertising ID if the user has enabled `Limit Ad Tracking` on his device.
 
-> During the Submitting the App you have to answer questions about the IDFA. Indicate whether your app uses the Advertising Identifier, and if so, in what way. If you checked No but Apple determine your app does use IDFA, your app will be put into the Invalid Binary status, and you will be notified by email. Similarly, if you checked `Yes` but your app uses IDFA in ways that don’t match the statements you checked, your app will be rejected by App Review and put into the Rejected status. In either case, when you resubmit the build, you will be presented with the IDFA questions again and can provide the appropriate answers.
+> During submitting the App you have to answer questions about the IDFA. Indicate whether your app uses the Advertising Identifier, and if so, in what way. If you checked No but Apple determine your app does use IDFA, your app will be put into the Invalid Binary status, and you will be notified by email. Similarly, if you checked `Yes` but your app uses IDFA in ways that don’t match the statements you checked, your app will be rejected by App Review and put into the Rejected status. In either case, when you resubmit the build, you will be presented with the IDFA questions again and can provide the appropriate answers.
 
-> See The Advertising Identifier (IDFA) for more details about this step:
+> See iTunes Connect Developer Guide for more details about this step:
 https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html#//apple_ref/doc/uid/TP40011225-CH33-SW8
 
 **2. Define a custom advertising ID which is a custom string**
@@ -242,7 +242,7 @@ ___
 The SDK may have one of the following three states:
 
 #### SPXStateNone
-This is the default state before you have not done anything. In this state scanning isn't active and no delegate method will be called. In order to switch to another state you have to call the `startScan` method.
+This is the default state before you have done anything. In this state scanning isn't active and no delegate method will be called. In order to switch to another state you have to call the `startScan` method.
 
 #### SPXStateBluetoothCheck
 In this state the SDK will check if bluetooth is turned on.
