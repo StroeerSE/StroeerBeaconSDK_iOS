@@ -49,22 +49,12 @@ ___
 
 ### Setup your App for Beacon Scanning
 Scanning nearby beacons is realised with a mix of Beacon Region Monitoring and Beacon Ranging by using the CoreLocation API.
-Therefore it's necessary to enable the background capability "*Location updates*" for your app by assigning `location` to the `UIBackgroundModes` key to your `info.plist`.
-Furthermore you have to add the `NSLocationAlwaysUsageDescription` key to your `info.plist` file with a suitable value.
+Therefore it's necessary to add the `NSLocationAlwaysUsageDescription` key to your `info.plist` file with a suitable value.
 
 ```xml
 <key>NSLocationAlwaysUsageDescription</key>
 <string>Scan for blulocs</string>
-<key>UIBackgroundModes</key>
-<array>
-	<string>location</string>
-</array>
 ```
-
-Also ensure that you comply with the latest [Apple App Store Review Guidelines](https://developer.apple.com/app-store/review/guidelines/):
-> 2.5.4 Multitasking apps may only use background services for their intended purposes: VoIP, audio playback, location, task completion, local notifications, etc. If your app uses location background mode, include a reminder that doing so may dramatically decrease battery life.
-
-> 5.1.5 Location Services: Use Location services in your app only when it is directly relevant to the features and services provided by the app. [...] If your app uses background location services, be sure to explain the purpose in your app; refer to the Human Interface Guidelines for best practices on doing so.
 
 #### iOS 7.0
 Scanning for beacons is no longer supported on iOS 7. It is still possible to integrate the SDK in a iOS 7 project but starting the scan will throw an error.
