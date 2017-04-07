@@ -8,7 +8,6 @@
 #import <UIKit/UIKit.h>
 
 @class SPXBeacon;
-@class SPXLocation;
 @class SPXError;
 
 @protocol SPXStroeerProxityAPIDelegate;
@@ -86,7 +85,7 @@ typedef NS_ENUM(NSInteger, SPXState)
 #pragma mark - Scanning
 
 /**
- * Determines wheter the device is supported by the SDK or not.
+ * Determines whether the device is supported by the SDK or not.
  *
  *  @return @p Yes, if the device is supported and can be used for scanning. 
  */
@@ -134,17 +133,28 @@ typedef NS_ENUM(NSInteger, SPXState)
 @property (nonatomic, getter=isAnalyticsEnabled) BOOL analyticsEnabled;
 
 /**
- * If set, the custom advertising identifier will be added to each analytics event.
+ * Use this method to specify your own advertising identifier.
+ * The custom advertising identifier will be added to each analytics event.
  * This can be used to identify the user across different apps.
  */
 @property (nonatomic, nullable) NSString *customAdvertisingId;
 
 /**
- * If set to YES, the The Advertising Identifier (IDFA) from iOS will be added to each analytics event.
- * Default value is YES.
+ * If set to YES, the Advertising Identifier (IDFA) from iOS will be added to each analytics event.
+ * Default setting within the SDK is YES.
  *
  * This method returns YES if the user has enabled advertising tracking in the system settings ([[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]).
  * If the user does not allow advertising tracking, it won't be enabled in the SDK.
+ *
+ *
+ * BOOL res = [[SPXStroeerProxityAPI sharedInstance] setAdvertisingTrackingEnabled:YES];
+ * setter returns true, if you want to enable feature and limit-ad-tracking is disabled
+ * setter returns false, if you want to enable feature and limit-ad-tracking is enabled
+ *
+ * BOOL res = [[SPXStroeerProxityAPI sharedInstance] setAdvertisingTrackingEnabled:NO];
+ * setter returns true, if you want to disable feature and/or limit-ad-tracking is disabled
+ * setter returns false, if you want to disable feature and/or limit-ad-tracking is enabled
+ *
  *
  * During the Submitting the App you have to answer questions about the IDFA. Indicate whether your app uses the Advertising Identifier, and if so, in what way. 
  * If you checked No but Apple determine your app does use IDFA, your app will be put into the Invalid Binary status, and you will be notified by email.
@@ -156,6 +166,14 @@ typedef NS_ENUM(NSInteger, SPXState)
  *   https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html#//apple_ref/doc/uid/TP40011225-CH33-SW8
  */
 - (BOOL)setAdvertisingTrackingEnabled:(BOOL)advertisingTrackingEnabled;
+
+/**
+ * You can check if Advertising Tracking is enabled on the user's device.
+ *
+ * returns true, if limit-ad-tracking is disabled
+ * returns false, if limit-ad-tracking is enabled
+ *
+ */
 - (BOOL)isAdvertisingTrackingEnabled;
 
 #pragma mark - Logging
@@ -198,11 +216,11 @@ typedef NS_ENUM(NSInteger, SPXState)
 @optional
 
 /**
- * Informs the delegate about an occured error. In case of a critical error (e.g. invalid Api-Key)
+ * Informs the delegate about an occurred error. In case of a critical error (e.g. invalid Api-Key)
  * the SDK will stop scanning automatically.
  *
  * @param spxAPi The current instance of the api.
- * @param error The occured error.
+ * @param error The occurred error.
  */
 - (void)stroeerProxityAPI:(SPXStroeerProxityAPI*)spxAPi didFailWithError:(SPXError*)error;
 

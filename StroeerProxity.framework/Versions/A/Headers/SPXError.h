@@ -7,7 +7,7 @@
 
 
 /**
- * Possible errors that can occure in the SDK
+ * Possible errors that can occur in the SDK
  */
 typedef NS_ENUM(NSInteger, SPXErrorCode)
 {
@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, SPXErrorCode)
     /**
      * The api key couldn't be validated or the operation couldn't be finished due to network errors.
      */
-    SPXErrorCodeNetworkConnection,
+    SPXErrorCodeNetworkConnection __attribute__ ((deprecated)),
     
     /**
      * This error is thrown if the device doesn't fully support ranging or monitoring for beacons.
@@ -35,11 +35,16 @@ typedef NS_ENUM(NSInteger, SPXErrorCode)
      * This error is thrown if the bluetooth is not available.
      */
     SPXErrorCodeBluetoothNotAvailable,
+
+    /**
+     * This error is thrown if bluetooth was deactivated on the device during scanning
+     */
+     SPXErrorCodeBluetoothDeactivated,
     
     /**
      * This error is thrown if the user has denied the usage of the location services.
      */
-    SPXErrorCodeLocationUsageDenied    
+    SPXErrorCodeLocationUsageDenied __attribute__ ((deprecated))
 };
 
 @interface SPXError : NSObject
