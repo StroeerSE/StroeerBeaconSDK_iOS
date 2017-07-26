@@ -34,7 +34,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, "7.0"
 
 target 'YourTargetName' do
-  pod 'stroeer-proxity', '~> 2.0'
+  pod 'stroeer-proxity', '~> 2.1'
 end
 ```
 
